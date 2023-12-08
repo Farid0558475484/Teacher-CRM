@@ -63,6 +63,14 @@ main {
   }
   .filterTime {
     margin: 0 20px;
+    .dropdown {
+      margin: 0;
+      font-size: 25px;
+      border-radius: 20px;
+      background-color: #ffffff;
+      color: rgb(66, 66, 153);
+      padding: 10px;
+    }
   }
 }
 

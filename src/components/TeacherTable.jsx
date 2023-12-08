@@ -1,10 +1,10 @@
-import { Col, Container, Row } from "react-bootstrap";
 import { useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import CardGroup from "react-bootstrap/CardGroup";
 import Card from "react-bootstrap/Card";
 import Dropdown from "react-bootstrap/Dropdown";
-import s from "./TeacherTable.module.scss";
 import lessonsData from "./../../json";
+import s from "./TeacherTable.module.scss";
 
 const daysOfWeek = [
   "all",
@@ -20,37 +20,48 @@ const daysOfWeek = [
 function TeacherTable() {
   const [activeButton, setActiveButton] = useState("all");
   const [activeDay, setActiveDay] = useState("all");
+  const [selectedTime, setSelectedTime] = useState("all");
   const [filteredLessons, setFilteredLessons] = useState(lessonsData);
 
   const handleButtonClick = (buttonType) => {
-    console.log("Button clicked:", buttonType);
+    console.log("Кнопка нажата:", buttonType);
     setActiveButton(buttonType);
-    filterData(buttonType, activeDay);
+    filterData(buttonType, activeDay, selectedTime);
   };
 
   const resetButton = () => {
     setActiveButton("all");
     setActiveDay("all");
+    setSelectedTime("all");
     setFilteredLessons(lessonsData);
   };
 
   const handleWeekDay = (day) => {
-    console.log("Day clicked:", day);
+    console.log("День нажат:", day);
     setActiveDay(day);
-    filterData(activeButton, day);
+    filterData(activeButton, day, selectedTime);
   };
 
-  const filterData = (buttonType, day) => {
-    if (buttonType === "all" && day === "all") {
+  const handleTimeSelect = (time) => {
+    console.log("Выбрано время:", time);
+    setSelectedTime(time);
+    filterData(activeButton, activeDay, time);
+  };
+
+  const filterData = (buttonType, day, time) => {
+    if (buttonType === "all" && day === "all" && time === "all") {
       setFilteredLessons(lessonsData);
     } else {
       const filtered = lessonsData.filter(
         (lesson) =>
           (buttonType === "all" ||
             lesson.type.toLowerCase() === buttonType.toLowerCase()) &&
-          (day === "all" || lesson.weekDay.toLowerCase() === day.toLowerCase())
+          (day === "all" ||
+            lesson.weekDay.toLowerCase() === day.toLowerCase()) &&
+          (time === "all" ||
+            lesson.time.toLowerCase().includes(time.toLowerCase()))
       );
-      console.log("Filtered lessons:", filtered);
+      console.log("Отфильтрованные уроки:", filtered);
       setFilteredLessons(filtered);
     }
   };
@@ -108,18 +119,28 @@ function TeacherTable() {
               </div>
 
               <div className={s.filterTime}>
-                <Dropdown>
+                <Dropdown className={s.dropdown}>
                   <Dropdown.Toggle variant="light" id="dropdown-basic">
-                    All Times
+                    {selectedTime === "all" ? "All Time" : selectedTime}
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
-                    <Dropdown.Item href="#/time-1">09:00 - 11:00</Dropdown.Item>
-                    <Dropdown.Item href="#/time-2">11:00 - 13:00</Dropdown.Item>
-                    <Dropdown.Item href="#/time-3">13:00 - 15:00</Dropdown.Item>
-                    <Dropdown.Item href="#/time-4">15:00 - 17:00</Dropdown.Item>
-                    <Dropdown.Item href="#/time-5">17:00 - 19:00</Dropdown.Item>
-                    <Dropdown.Item href="#/time-6">19:00 - 21:00</Dropdown.Item>
-                    <Dropdown.Item href="#/time-7">21:00 - 23:00</Dropdown.Item>
+                    {[
+                      "All Time",
+                      "09:00 - 11:00",
+                      "11:00 - 13:00",
+                      "13:00 - 15:00",
+                      "15:00 - 17:00",
+                      "17:00 - 19:00",
+                      "19:00 - 21:00",
+                      "21:00 - 23:00",
+                    ].map((time) => (
+                      <Dropdown.Item
+                        key={time}
+                        onClick={() => handleTimeSelect(time)}
+                      >
+                        {time}
+                      </Dropdown.Item>
+                    ))}
                   </Dropdown.Menu>
                 </Dropdown>
               </div>

@@ -1,7 +1,7 @@
 const lessonsData = [
   {
     id: 1,
-    time: "09:00-11:00",
+    time: "09:00 - 11:00",
     weekDay: "Monday",
     type: "Group",
     name: "General English",
@@ -10,7 +10,7 @@ const lessonsData = [
   },
   {
     id: 2,
-    time: "11:00-13:00",
+    time: "11:00 - 13:00",
     weekDay: "Tuesday",
     type: "Private",
     name: "Advanced English",
@@ -19,7 +19,7 @@ const lessonsData = [
   },
   {
     id: 3,
-    time: "13:00-15:00",
+    time: "13:00 - 15:00",
     weekDay: "Wednesday",
     type: "Group",
     name: "Business English",
@@ -28,7 +28,7 @@ const lessonsData = [
   },
   {
     id: 4,
-    time: "15:00-17:00",
+    time: "15:00 - 17:00",
     weekDay: "Thursday",
     type: "Private",
     name: "IELTS Preparation",
@@ -37,7 +37,7 @@ const lessonsData = [
   },
   {
     id: 5,
-    time: "17:00-19:00",
+    time: "17:00 - 19:00",
     weekDay: "Friday",
     type: "Group",
     name: "Conversational English",
@@ -46,7 +46,7 @@ const lessonsData = [
   },
   {
     id: 6,
-    time: "19:00-21:00",
+    time: "19:00 - 21:00",
     weekDay: "Saturday",
     type: "Group",
     name: "TOEFL Preparation",
@@ -55,7 +55,7 @@ const lessonsData = [
   },
   {
     id: 7,
-    time: "21:00-23:00",
+    time: "21:00 - 23:00",
     weekDay: "Monday",
     type: "Private",
     name: "English Literature",
@@ -64,7 +64,7 @@ const lessonsData = [
   },
   {
     id: 8,
-    time: "09:00-11:00",
+    time: "09:00 - 11:00",
     weekDay: "Sunday",
     type: "Private",
     name: "Grammar Workshop",
@@ -73,7 +73,7 @@ const lessonsData = [
   },
   {
     id: 9,
-    time: "11:00-13:00",
+    time: "11:00 - 13:00",
     weekDay: "Tuesday",
     type: "Group",
     name: "English for Kids",
@@ -82,7 +82,7 @@ const lessonsData = [
   },
   {
     id: 10,
-    time: "13:00-15:00",
+    time: "13:00 - 15:00",
     weekDay: "Wednesday",
     type: "Group",
     name: "English for Teens",
@@ -91,7 +91,7 @@ const lessonsData = [
   },
   {
     id: 11,
-    time: "15:00-17:00",
+    time: "15:00 - 17:00",
     weekDay: "Monday",
     type: "Private",
     name: "English for Adults",
@@ -100,7 +100,7 @@ const lessonsData = [
   },
   {
     id: 12,
-    time: "17:00-19:00",
+    time: "17:00 - 19:00",
     weekDay: "Thursday",
     type: "Group",
     name: "English for Seniors",
