@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import CardGroup from "react-bootstrap/CardGroup";
 import Card from "react-bootstrap/Card";
 import Dropdown from "react-bootstrap/Dropdown";
-import lessonsData from "./../../json";
+import lessonsData from "../../../json";
 import s from "./TeacherTable.module.scss";
 
 const daysOfWeek = [
