@@ -46,15 +46,21 @@ function Login() {
         {/* Отображаем ошибку */}
         <input
           type="text"
+          id="username"
+          name="username"
           placeholder="Имя пользователя"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          autoComplete="username"
         />
         <input
           type="password"
+          id="password"
+          name="password"
           placeholder="Пароль"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          autoComplete="current-password"
         />
         <button onClick={handleLogin}>Войти</button>
       </div>

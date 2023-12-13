@@ -1,11 +1,28 @@
+// Dashboard.jsx
+import { Routes, Route } from "react-router-dom";
+import { Col } from "react-bootstrap";
+import Sidebar from "./../../components/Sidebar/Sidebar";
+import HomeDashboard from "./../../components/HomeDashboard/HomeDashboard";
+import AddLesson from "./../../components/AddLesson/AddLesson";
+import Header from "./../../components/Header/Header";
+
 function Dashboard() {
   return (
-    <div>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex nemo
-      necessitatibus repellendus optio adipisci mollitia nisi expedita, deserunt
-      tenetur blanditiis, suscipit voluptatibus ea fuga earum hic iusto ipsum
-      sapiente veniam.
-    </div>
+    <>
+      <Header />
+      <div style={{ display: "flex" }}>
+        <Col md={2}>
+          <Sidebar />
+        </Col>
+
+        <Col md={10}>
+          <Routes>
+            <Route path="/home" element={<HomeDashboard />} />
+            <Route path="/add-lesson" element={<AddLesson />} />
+          </Routes>
+        </Col>
+      </div>
+    </>
   );
 }
 
