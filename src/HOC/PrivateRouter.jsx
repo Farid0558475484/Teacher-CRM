@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
 function PrivateRouter({ children }) {
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const success = useSelector((state) => state.auth.success);
 
-  if (!isAuthenticated) {
+  if (!success) {
     return <Navigate to="/login" />;
   }
 

@@ -14,49 +14,57 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const handleLogin = async () => {
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    console.log("handleLogin");
     try {
       const response = await loginUser({ email, password });
-      const { token, UserName } = response.data;
+      const { success, message, token } = response.data;
+
+      console.log("Received token:", token);
 
       sessionStorage.setItem("token", token);
-      dispatch(setAuth({ isAuthenticated: true, userName: UserName }));
+      dispatch(setAuth({ success: true, message, token }));
       navigate("/dashboard");
     } catch (error) {
-      console.error("Ошибка входа:", error);
+      console.error("Error:", error);
 
-      if (error.status === 401 && error.data?.Message) {
-        setError("Неправильное имя пользователя или пароль");
+      if (error.status === 401 && error.data?.message) {
+        setError("Invalid username or password");
       } else {
-        setError("Произошла ошибка при входе");
+        setError("Error logging in, please try again later");
       }
     }
+
+    console.log("handleLogin end");
   };
 
   return (
     <section className={s.loginContainer}>
       <div className={s.loginForm}>
-        <h2>Вход в систему</h2>
+        <h2>Login</h2>
         {error && <div className={s.error}>{error}</div>}
-        <input
-          type="text"
-          id="username"
-          name="username"
-          placeholder="Имя пользователя"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          autoComplete="username"
-        />
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Пароль"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          autoComplete="current-password"
-        />
-        <button onClick={handleLogin}>Войти</button>
+        <form>
+          <input
+            type="text"
+            id="email"
+            name="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            autoComplete="email"
+          />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
+          />
+          <button onClick={handleLogin}>Sign in</button>
+        </form>
       </div>
     </section>
   );
