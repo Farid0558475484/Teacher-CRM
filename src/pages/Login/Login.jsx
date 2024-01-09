@@ -4,36 +4,31 @@ import { useSignInMutation } from "./../../api/authApi";
 import { useDispatch } from "react-redux";
 import { setAuth } from "./../../redux/features/auth/authSlice";
 import s from "./Login.module.scss";
-// ... (ваш импорт и стили)
 
 function Login() {
   const [loginUser] = useSignInMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null); // Новое состояние для ошибок
+  const [error, setError] = useState(null);
 
   const handleLogin = async () => {
     try {
-      const response = await loginUser({ username, password });
-      const { Token, UserName, Role } = response.data;
+      const response = await loginUser({ email, password });
+      const { token, UserName } = response.data;
 
-      sessionStorage.setItem("token", Token);
-
-      dispatch(
-        setAuth({ isAuthenticated: true, userName: UserName, role: Role })
-      );
-
+      sessionStorage.setItem("token", token);
+      dispatch(setAuth({ isAuthenticated: true, userName: UserName }));
       navigate("/dashboard");
     } catch (error) {
       console.error("Ошибка входа:", error);
 
       if (error.status === 401 && error.data?.Message) {
-        setError("Неправильное имя пользователя или пароль"); // Устанавливаем ошибку
+        setError("Неправильное имя пользователя или пароль");
       } else {
-        setError("Произошла ошибка при входе"); // Общая ошибка входа
+        setError("Произошла ошибка при входе");
       }
     }
   };
@@ -42,15 +37,14 @@ function Login() {
     <section className={s.loginContainer}>
       <div className={s.loginForm}>
         <h2>Вход в систему</h2>
-        {error && <div className={s.error}>{error}</div>}{" "}
-        {/* Отображаем ошибку */}
+        {error && <div className={s.error}>{error}</div>}
         <input
           type="text"
           id="username"
           name="username"
           placeholder="Имя пользователя"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           autoComplete="username"
         />
         <input

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
 
 export const baseQuery = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: "http://waiting.barattson.com" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8089" }),
   endpoints: () => ({}),
   prepareHeaders: (headers) => {
     const token = sessionStorage.getItem("token");

@@ -5,19 +5,15 @@ export const autApi = baseQuery.injectEndpoints({
   endpoints: (builder) => ({
     signIn: builder.mutation({
       query: (user) => ({
-        url: "/api/Security/post/auth/user",
+        url: "/api/students/login-student",
         user,
         method: "POST",
         body: user,
         providesTags: ["User"],
       }),
     }),
-    getRole: builder.query({
-      query: () => `/api/Security/roles/readall`,
-      providesTags: ["User"],
-    }),
   }),
   overrideExisting: false,
 });
 
-export const { useSignInMutation, useGetRoleQuery } = autApi;
+export const { useSignInMutation } = autApi;

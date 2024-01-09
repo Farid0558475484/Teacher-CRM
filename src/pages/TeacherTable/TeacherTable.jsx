@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import Dropdown from "react-bootstrap/Dropdown";
 import lessonsData from "../../../json";
 import s from "./TeacherTable.module.scss";
+import { NavLink } from "react-router-dom";
 
 const daysOfWeek = [
   "all",
@@ -24,7 +25,6 @@ function TeacherTable() {
   const [filteredLessons, setFilteredLessons] = useState(lessonsData);
 
   const handleButtonClick = (buttonType) => {
-    console.log("Кнопка нажата:", buttonType);
     setActiveButton(buttonType);
     filterData(buttonType, activeDay, selectedTime);
   };
@@ -37,13 +37,11 @@ function TeacherTable() {
   };
 
   const handleWeekDay = (day) => {
-    console.log("День нажат:", day);
     setActiveDay(day);
     filterData(activeButton, day, selectedTime);
   };
 
   const handleTimeSelect = (time) => {
-    console.log("Выбрано время:", time);
     setSelectedTime(time);
     filterData(activeButton, activeDay, time);
   };
@@ -61,7 +59,6 @@ function TeacherTable() {
           (time === "all" ||
             lesson.time.toLowerCase().includes(time.toLowerCase()))
       );
-      console.log("Отфильтрованные уроки:", filtered);
       setFilteredLessons(filtered);
     }
   };
@@ -74,79 +71,97 @@ function TeacherTable() {
             <div className={s.header}>
               <div className={s.title}>
                 <h1>
-                  <span className={s.brandName}>Barattson:</span> English Lesson
+                Barattson
                 </h1>
               </div>
-              <div className={s.buttonLessonType}>
-                <button
-                  className={
-                    activeButton === "group"
-                      ? `${s.button} ${s.activeButton}`
-                      : s.button
-                  }
-                  onClick={() => handleButtonClick("group")}
-                >
-                  Group
-                </button>
-                <button
-                  className={
-                    activeButton === "private"
-                      ? `${s.button} ${s.activeButton}`
-                      : s.button
-                  }
-                  onClick={() => handleButtonClick("private")}
-                >
-                  Private
-                </button>
+
+              <div className={s.login}>
+                <div className={s.singInButton}>
+                  <NavLink to="/login" className={s.loginButton}>
+                    Sign In
+                  </NavLink>
+                </div>
+                <div className={s.singUpButton}>
+                  <NavLink to="/register" className={s.loginButton}>
+                    Sign Up
+                  </NavLink>
+                </div>
               </div>
             </div>
 
             <div className={s.filter}>
-              <div className={s.filterDay}>
-                {daysOfWeek.map((day) => (
+              <div className={s.left}>
+                <div className={s.filterDay}>
+                  {daysOfWeek.map((day) => (
+                    <button
+                      className={
+                        activeDay === day
+                          ? `${s.button} ${s.activeButton}`
+                          : s.button
+                      }
+                      key={day}
+                      onClick={() => handleWeekDay(day)}
+                    >
+                      {day === "all" ? "All Days" : day}
+                    </button>
+                  ))}
+                </div>
+
+                <div className={s.filterTime}>
+                  <Dropdown className={s.dropdown}>
+                    <Dropdown.Toggle variant="light" id="dropdown-basic">
+                      {selectedTime === "all" ? "All Time" : selectedTime}
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      {[
+                        "All Time",
+                        "09:00 - 11:00",
+                        "11:00 - 13:00",
+                        "13:00 - 15:00",
+                        "15:00 - 17:00",
+                        "17:00 - 19:00",
+                        "19:00 - 21:00",
+                        "21:00 - 23:00",
+                      ].map((time) => (
+                        <Dropdown.Item
+                          key={time}
+                          onClick={() => handleTimeSelect(time)}
+                        >
+                          {time}
+                        </Dropdown.Item>
+                      ))}
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+
+                <div className={s.resetButton}>
+                  <button onClick={resetButton}>Reset</button>
+                </div>
+              </div>
+
+              <div className={s.right}>
+                <div className={s.buttonLessonType}>
                   <button
                     className={
-                      activeDay === day
+                      activeButton === "group"
                         ? `${s.button} ${s.activeButton}`
                         : s.button
                     }
-                    key={day}
-                    onClick={() => handleWeekDay(day)}
+                    onClick={() => handleButtonClick("group")}
                   >
-                    {day === "all" ? "All Days" : day}
+                    Group
                   </button>
-                ))}
-              </div>
-
-              <div className={s.filterTime}>
-                <Dropdown className={s.dropdown}>
-                  <Dropdown.Toggle variant="light" id="dropdown-basic">
-                    {selectedTime === "all" ? "All Time" : selectedTime}
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    {[
-                      "All Time",
-                      "09:00 - 11:00",
-                      "11:00 - 13:00",
-                      "13:00 - 15:00",
-                      "15:00 - 17:00",
-                      "17:00 - 19:00",
-                      "19:00 - 21:00",
-                      "21:00 - 23:00",
-                    ].map((time) => (
-                      <Dropdown.Item
-                        key={time}
-                        onClick={() => handleTimeSelect(time)}
-                      >
-                        {time}
-                      </Dropdown.Item>
-                    ))}
-                  </Dropdown.Menu>
-                </Dropdown>
-              </div>
-
-              <div className={s.resetButton}>
-                <button onClick={resetButton}>Reset</button>
+                  <button
+                    className={
+                      activeButton === "private"
+                        ? `${s.button} ${s.activeButton}`
+                        : s.button
+                    }
+                    onClick={() => handleButtonClick("private")}
+                  >
+                    Private
+                  </button>
+                </div>
               </div>
             </div>
 

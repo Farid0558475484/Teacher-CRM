@@ -10,32 +10,29 @@ main {
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 100px 0;
+  align-items: center;
+  padding: 50px 0 100px 0;
+
+  .login {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .loginButton {
+      background-color: rgb(66, 66, 153);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #fff;
+      text-decoration: none;
+    }
+  }
 
   .title {
     h1 {
       color: rgb(66, 66, 153);
-      border-bottom: 5px solid white;
-    }
-
-    .brandName {
       border-bottom: 5px solid rgb(66, 66, 153);
-    }
-  }
-
-  .buttonLessonType {
-    .activeButton {
-      background-color: rgb(66, 66, 153);
-      color: #f0f0f0;
-      font-size: 25px;
-      border-radius: 20px;
-    }
-
-    button {
-      background-color: white;
-      color: rgb(66, 66, 153);
-      font-size: 25px;
-      border-radius: 20px;
     }
   }
 }
@@ -43,33 +40,57 @@ main {
 .filter {
   display: flex;
   align-items: center;
-  .filterDay {
-    display: flex;
-    gap: 10px;
-    .activeButton {
-      background-color: rgb(66, 66, 153);
-      color: #f0f0f0;
-      font-size: 25px;
-      border-radius: 20px;
-    }
-    button {
-      margin: 0;
-      font-size: 25px;
-      border-radius: 20px;
-      background-color: #ffffff;
-      color: rgb(66, 66, 153);
-      padding: 10px;
+  justify-content: space-between;
+
+  .right {
+    .buttonLessonType {
+      .activeButton {
+        background-color: rgb(66, 66, 153);
+        color: #f0f0f0;
+        font-size: 25px;
+        border-radius: 20px;
+      }
+
+      button {
+        background-color: white;
+        color: rgb(66, 66, 153);
+        font-size: 25px;
+        border-radius: 20px;
+        margin: 0 10px;
+      }
     }
   }
-  .filterTime {
-    margin: 0 20px;
-    .dropdown {
-      margin: 0;
-      font-size: 25px;
-      border-radius: 20px;
-      background-color: #ffffff;
-      color: rgb(66, 66, 153);
-      padding: 10px;
+  .left {
+    display: flex;
+    align-items: center;
+    .filterDay {
+      display: flex;
+      gap: 10px;
+      .activeButton {
+        background-color: rgb(66, 66, 153);
+        color: #f0f0f0;
+        font-size: 25px;
+        border-radius: 20px;
+      }
+      button {
+        margin: 0;
+        font-size: 25px;
+        border-radius: 20px;
+        background-color: #ffffff;
+        color: rgb(66, 66, 153);
+        padding: 10px;
+      }
+    }
+    .filterTime {
+      margin: 0 20px;
+      .dropdown {
+        margin: 0;
+        font-size: 25px;
+        border-radius: 20px;
+        background-color: #ffffff;
+        color: rgb(66, 66, 153);
+        padding: 10px;
+      }
     }
   }
 }
@@ -129,7 +150,6 @@ main {
 }
 
 button {
-  //   width: 100%;
   margin-top: 20px;
   background-color: #3498db;
   color: #fff;
