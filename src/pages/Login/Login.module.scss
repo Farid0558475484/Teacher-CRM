@@ -16,6 +16,7 @@
   text-align: center;
 
   h2 {
+    font-size: 40px;
     color: #333;
   }
 
@@ -45,4 +46,31 @@
 .error {
   color: #ff0000;
   margin-bottom: 10px;
+}
+
+.typePerson {
+  display: flex;
+  justify-content: space-around;
+}
+
+.student,
+.teacher {
+  padding: 10px;
+  text-decoration: none;
+  color: rgb(66, 66, 153);
+  border: 3px solid rgb(66, 66, 153);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  font-size: 25px;
+}
+
+.student.selected {
+  color: #fff;
+  background-color: rgb(66, 66, 153);
+}
+
+.teacher.selected {
+  color: #fff;
+  background-color: rgb(66, 66, 153);
 }
