@@ -42,7 +42,7 @@ function Login() {
 
       sessionStorage.setItem("token", token);
       dispatch(setAuth({ success: true, message, token }));
-      navigate("/dashboard");
+      navigate("/teacher");
     } catch (error) {
       console.error("Error:", error);
 

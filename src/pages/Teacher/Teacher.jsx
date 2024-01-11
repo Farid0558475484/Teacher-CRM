@@ -1,12 +1,11 @@
-// Dashboard.jsx
 import { Routes, Route } from "react-router-dom";
 import { Col } from "react-bootstrap";
-import Sidebar from "./../../components/Sidebar/Sidebar";
-import HomeDashboard from "./../../components/HomeDashboard/HomeDashboard";
-import AddLesson from "./../../components/AddLesson/AddLesson";
-import Header from "./../../components/Header/Header";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import HomeDashboard from "../../components/HomeDashboard/HomeDashboard";
+import AddLesson from "../../components/AddLesson/AddLesson";
+import Header from "./../../components/Teacher/Header/Header";
 
-function Dashboard() {
+function Teacher() {
   return (
     <>
       <Header />
@@ -26,4 +25,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Teacher;

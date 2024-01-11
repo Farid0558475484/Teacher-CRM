@@ -6,7 +6,7 @@ function PrivateRouter({ children }) {
   const success = useSelector((state) => state.auth.success);
 
   if (!success) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/teacher" />;
   }
 
   return children;
