@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 function PrivateRouter({ children }) {
   const success = useSelector((state) => state.auth.success);
 
-  if (!success) {
+  if (success) {
     return <Navigate to="/teacher" />;
   }
 

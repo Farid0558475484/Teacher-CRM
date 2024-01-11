@@ -1,26 +1,39 @@
 import { Routes, Route } from "react-router-dom";
-import { Col } from "react-bootstrap";
-import Sidebar from "../../components/Sidebar/Sidebar";
-import HomeDashboard from "../../components/HomeDashboard/HomeDashboard";
-import AddLesson from "../../components/AddLesson/AddLesson";
+import { Container, Row } from "react-bootstrap";
 import Header from "./../../components/Teacher/Header/Header";
+import Schedule from "./../../components/Teacher/Schedule/Schedule";
+import Lessons from "./../../components/Teacher/Lessons/Lessons";
+import Students from "./../../components/Teacher/Students/Students";
+import Wallet from "./../../components/Teacher/Wallet/Wallet";
+import Profile from "./../../components/Teacher/Profile/Profile";
+import TeacherSettings from "./../../components/Teacher/TeacherSettings/TeacherSettings";
+import Support from "./../../components/Teacher/Support/Support";
+import Messages from "./../../components/Teacher/Messages/Messages";
+import AccountSettings from "./../../components/Teacher/AccountSettings/AccountSettings";
+import TeacherHome from "./../../components/Teacher/TeacherHome/TeacherHome";
 
 function Teacher() {
   return (
     <>
       <Header />
-      <div style={{ display: "flex" }}>
-        <Col md={2}>
-          <Sidebar />
-        </Col>
-
-        <Col md={10}>
-          <Routes>
-            <Route path="/home" element={<HomeDashboard />} />
-            <Route path="/add-lesson" element={<AddLesson />} />
-          </Routes>
-        </Col>
-      </div>
+      <main style={{ display: "flex" }}>
+        <Container >
+          <Row>
+            <Routes>
+              <Route path="/" element={<TeacherHome />} />
+              <Route path="/teacher-settings" element={<TeacherSettings />} />
+              <Route path="/messages" element={<Messages />} />
+              <Route path="/schedule" element={<Schedule />} />
+              <Route path="/lessons" element={<Lessons />} />
+              <Route path="/students" element={<Students />} />
+              <Route path="/wallet" element={<Wallet />} />
+              <Route path="/account-settings" element={<AccountSettings />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/support" element={<Support />} />
+            </Routes>
+          </Row>
+        </Container>
+      </main>
     </>
   );
 }
