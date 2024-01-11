@@ -1,3 +1,7 @@
+.home {
+  display: flex;
+}
+
 .info {
   display: flex;
   background-color: #fff;
@@ -42,5 +46,46 @@
   }
   .desc {
     margin-top: 20px;
+  }
+}
+
+.lessons {
+  background-color: white;
+  margin: 20px 0;
+  padding: 20px;
+  .lessonsList {
+    padding: 20px;
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border: 2px solid rgb(241, 232, 232);
+  }
+  .cad {
+    .red {
+      background-color: rgb(239, 76, 76);
+      color: white;
+      border-radius: 20px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .pink {
+      background-color: rgb(232, 212, 212);
+      color: rgb(222, 50, 50);
+      border-radius: 20px;
+      text-align: center;
+    }
+  }
+}
+
+.lessonUSD {
+  background-color: white;
+  margin: 20px;
+  padding: 20px;
+  .lessonUSDHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }

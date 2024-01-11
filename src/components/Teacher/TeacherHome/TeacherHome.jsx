@@ -60,9 +60,94 @@ function TeacherHome() {
           </div>
         </div>
 
-        <div className={s.lessons}></div>
+        <div className={s.lessons}>
+          <h2> Lessons</h2>
+
+          <div className={s.lessonsList}>
+            <Col md={10}>
+              <p className={s.lessonTitle}>
+                General: English Reading, Writing, Speaking and Listening (20 -
+                Lesson Course)
+                <br />
+                ...
+                <br />
+              </p>
+              <p>General 541 lessons</p>
+            </Col>
+            <Col md={2}>
+              <div className={s.cad}>
+                <p className={s.red}>100%</p>
+                <p className={s.pink}>USD 24.92 +</p>
+              </div>
+            </Col>
+          </div>
+
+          <div className={s.lessonsList}>
+            <Col md={10}>
+              <p className={s.lessonTitle}>
+                General: English Reading, Writing, Speaking and Listening (20 -
+                Lesson Course)
+                <br />
+                ...
+                <br />
+              </p>
+              <p>General 541 lessons</p>
+            </Col>
+            <Col md={2}>
+              <div className={s.cad}>
+                <p className={s.red}>100%</p>
+                <p className={s.pink}>AZN 24.92 +</p>
+              </div>
+            </Col>
+          </div>
+
+          <div className={s.lessonsList}>
+            <Col md={10}>
+              <p className={s.lessonTitle}>
+                General: English Reading, Writing, Speaking and Listening (20 -
+                Lesson Course)
+                <br />
+                ...
+                <br />
+              </p>
+              <p>General 541 lessons</p>
+            </Col>
+            <Col md={2}>
+              <div className={s.cad}>
+                <p className={s.red}>100%</p>
+                <p className={s.pink}>AED 24.92 +</p>
+              </div>
+            </Col>
+          </div>
+
+          <div className={s.lessonsList}>
+            <Col md={10}>
+              <p className={s.lessonTitle}>
+                General: English Reading, Writing, Speaking and Listening (20 -
+                Lesson Course)
+                <br />
+                ...
+                <br />
+              </p>
+              <p>General 541 lessons</p>
+            </Col>
+            <Col md={2}>
+              <div className={s.cad}>
+                <p className={s.red}>100%</p>
+                <p className={s.pink}>CAD 24.92 +</p>
+              </div>
+            </Col>
+          </div>
+        </div>
       </Col>
-      <Col md={4}></Col>
+      <Col md={4}>
+        <div className={s.lessonUSD}>
+          <div className={s.lessonUSDHeader}>
+            <h2>Lessons</h2>
+            <p>USD 12.45</p>
+          </div>
+        </div>
+      </Col>
     </div>
   );
 }
