@@ -49,7 +49,43 @@ function TeacherSettings() {
               <button className={s.viewProfile}>VIEW PROFILE</button>
             </div>
           </Col>
-          <Col md={8}></Col>
+          <Col md={8}>
+            <div className={s.basicInformation}>
+              <h2>Basic Information</h2>
+
+              <div className={s.changePhoto}>
+                <Col md={6}>
+                  <div className={s.photo}>
+                    <img src="https://via.placeholder.com/150" alt="" />
+                  </div>
+                </Col>
+                <Col md={6}>
+                  <div className={s.changePhotoBtn}>
+                    <ul className={s.blokUi}>
+                      <li> - At least 500 x 500 pixels</li>
+                      <li> - JPG, GIF, PNG</li>
+                      <li> - Max 2MB</li>
+                    </ul>
+                    <button>Change Photo</button>
+                  </div>
+                </Col>
+              </div>
+
+              <div className={s.displayName}>
+                <h5>Display Name</h5>
+                <input type="text" placeholder="First Name" />
+              </div>
+
+              <div className={s.country}>
+                <h5>Country</h5>
+                <input type="text" placeholder="Country" />
+              </div>
+              <div className={s.city}>
+                <h5>Living in City</h5>
+                <input type="text" placeholder="Country" />
+              </div>
+            </div>
+          </Col>
         </Row>
       </Container>
     </section>
