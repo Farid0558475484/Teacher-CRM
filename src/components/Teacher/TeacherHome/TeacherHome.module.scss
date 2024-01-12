@@ -89,3 +89,17 @@
     align-items: center;
   }
 }
+
+.resume {
+  background-color: white;
+  padding: 20px;
+}
+
+.resumeInfo {
+  display: flex;
+  h5 {
+    border-left: 2px solid rgb(97, 150, 215);
+    margin: 20px 0;
+    padding: 0 0 0 10px;
+  }
+}
