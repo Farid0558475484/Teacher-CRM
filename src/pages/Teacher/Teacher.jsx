@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import { Container, Row } from "react-bootstrap";
 import Header from "./../../components/Teacher/Header/Header";
 import Schedule from "./../../components/Teacher/Schedule/Schedule";
 import Lessons from "./../../components/Teacher/Lessons/Lessons";
@@ -16,23 +15,19 @@ function Teacher() {
   return (
     <>
       <Header />
-      <main style={{ display: "flex" }}>
-        <Container >
-          <Row>
-            <Routes>
-              <Route path="/" element={<TeacherHome />} />
-              <Route path="/teacher-settings" element={<TeacherSettings />} />
-              <Route path="/messages" element={<Messages />} />
-              <Route path="/schedule" element={<Schedule />} />
-              <Route path="/lessons" element={<Lessons />} />
-              <Route path="/students" element={<Students />} />
-              <Route path="/wallet" element={<Wallet />} />
-              <Route path="/account-settings" element={<AccountSettings />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/support" element={<Support />} />
-            </Routes>
-          </Row>
-        </Container>
+      <main>
+        <Routes>
+          <Route path="/" element={<TeacherHome />} />
+          <Route path="/teacher-settings" element={<TeacherSettings />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/schedule" element={<Schedule />} />
+          <Route path="/lessons" element={<Lessons />} />
+          <Route path="/students" element={<Students />} />
+          <Route path="/wallet" element={<Wallet />} />
+          <Route path="/account-settings" element={<AccountSettings />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/support" element={<Support />} />
+        </Routes>
       </main>
     </>
   );

@@ -20,7 +20,9 @@ function Header() {
           <Row className={s.row}>
             <Col md={4}>
               <div className={s.logo}>
-                <img src={logo} alt="logo" />
+                <NavLink to={`/teacher`}>
+                  <img src={logo} alt="logo" />
+                </NavLink>
               </div>
             </Col>
             <Col md={8}>
