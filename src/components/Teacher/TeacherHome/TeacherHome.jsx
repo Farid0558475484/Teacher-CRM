@@ -1,5 +1,5 @@
 import { Col } from "react-bootstrap";
-import photo from "./../../../../public/img/face-man.jpeg";
+import photo from "./../../../assets/img/face-man.jpeg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 

@@ -1,9 +1,8 @@
-import React from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
-import logo from "./../../../../public/img/logo.webp";
-import face from "./../../../../public/img/face-man.jpeg";
+import logo from "./../../../assets/img/logo.webp";
+import face from "./../../../assets/img/face-man.jpeg";
 import Sidebar from "./../Sidebar/Sidebar";
 import { Offcanvas } from "react-bootstrap";
 import s from "./Header.module.scss";
