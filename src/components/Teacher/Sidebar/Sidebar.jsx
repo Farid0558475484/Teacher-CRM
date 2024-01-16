@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import LogoutButton from "./../../LogOut/LogOut";
 import s from "./Sidebar.module.scss";
 
 function Sidebar() {
@@ -36,9 +37,7 @@ function Sidebar() {
           </NavLink>
         </li>
         <li>
-          <NavLink to={`/teacher/log-out`} className={s.item}>
-            Log Out
-          </NavLink>
+          <LogoutButton />
         </li>
       </ul>
     </div>

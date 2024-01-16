@@ -80,9 +80,10 @@ function TeacherSettings() {
                 <h5>Country</h5>
                 <input type="text" placeholder="Country" />
               </div>
+
               <div className={s.city}>
                 <h5>Living in City</h5>
-                <input type="text" placeholder="Country" />
+                <input type="text" placeholder="City" />
               </div>
             </div>
           </Col>

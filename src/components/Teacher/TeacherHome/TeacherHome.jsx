@@ -2,10 +2,14 @@ import { Col, Container, Row } from "react-bootstrap";
 import photo from "./../../../assets/img/face-man.jpeg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
-
 import s from "./TeacherHome.module.scss";
+import { useParams } from "react-router-dom";
 
 function TeacherHome() {
+  const { userId } = useParams();
+  console.log("TeacherHome component rendered");
+  console.log("userId from URL:", userId);
+
   return (
     <section>
       <Container>

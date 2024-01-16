@@ -24,29 +24,30 @@ function Login() {
     setSelectedType(type);
   };
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    console.log("handleLogin");
+  const login = async () => {
     try {
       let response;
-
       if (selectedType === "student") {
         response = await loginStudent({ email, password });
       } else {
         response = await loginTeacher({ email, password });
       }
 
-      const { success, message, token } = response.data;
+      const { message, token, user } = response.data;
 
       console.log("Received token:", token);
+      console.log("Login success:", true);
+      console.log("User:", user);
 
       sessionStorage.setItem("token", token);
-      dispatch(setAuth({ success: true, message, token }));
-      navigate("/teacher");
+      sessionStorage.setItem("userId", user.id);
+      sessionStorage.setItem("success", true);
+      dispatch(setAuth({ success: true, message, token, user }));
+      navigate(`/teacher/${user.id}`);
     } catch (error) {
       console.error("Error:", error);
 
-      if (error.status === 401 && error.data?.message) {
+      if (error.response && error.response.status === 401) {
         setError("Invalid username or password");
       } else {
         setError("Error logging in, please try again later");
@@ -54,6 +55,12 @@ function Login() {
     }
 
     console.log("handleLogin end");
+  };
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    console.log("handleLogin");
+    login();
   };
 
   return (
@@ -81,7 +88,7 @@ function Login() {
         </div>
 
         {error && <div className={s.error}>{error}</div>}
-        <form>
+        <form onSubmit={handleLogin}>
           <input
             type="text"
             id="email"
@@ -100,7 +107,7 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
           />
-          <button onClick={handleLogin}>Sign in</button>
+          <button type="submit">Sign in</button>
         </form>
       </div>
     </section>

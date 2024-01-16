@@ -17,7 +17,7 @@ function Teacher() {
       <Header />
       <main>
         <Routes>
-          <Route path="/" element={<TeacherHome />} />
+          <Route path="/:userId/*" element={<TeacherHome />} />
           <Route path="/teacher-settings" element={<TeacherSettings />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="/schedule" element={<Schedule />} />

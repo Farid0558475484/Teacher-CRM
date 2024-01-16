@@ -11,18 +11,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-          <Route path="/" element={<TeacherTable />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route
-            path="/teacher/*"
-            element={
-              <PrivateRouter>
-                <Teacher />
-              </PrivateRouter>
-            }
-          />
-          <Route path="*" element={<NotFoundPage />} />
+        <Route path="/" element={<TeacherTable />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/teacher/*" element={<PrivateRouter><Teacher /></PrivateRouter>} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,9 +1,5 @@
-import React from 'react'
-
 function Lessons() {
-  return (
-    <div>Lessons</div>
-  )
+  return <div>Lessons</div>;
 }
 
-export default Lessons
+export default Lessons;
