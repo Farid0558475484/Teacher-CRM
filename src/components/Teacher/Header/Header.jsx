@@ -13,6 +13,8 @@ function Header() {
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
   };
+
+  const userId = sessionStorage.getItem("userId");
   return (
     <header className={s.header}>
       <section className={s.teacherHeader}>
@@ -20,7 +22,7 @@ function Header() {
           <Row className={s.row}>
             <Col md={4}>
               <div className={s.logo}>
-                <NavLink to={`/teacher/}`}>
+                <NavLink to={`/teacher/${userId}}`}>
                   <img src={logo} alt="logo" />
                 </NavLink>
               </div>

@@ -1,8 +1,15 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { Accordion } from "react-bootstrap";
 import s from "./TeacherSettings.module.scss";
+// import { useUserUpdateMutation } from "../../../api/usersApi";
 
 function TeacherSettings() {
+  // const { data } = useUserUpdateMutation();
+
+  // if (!data) {
+  //   return "no data...";
+  // }
+
   return (
     <section>
       <Container>
@@ -71,9 +78,19 @@ function TeacherSettings() {
                 </Col>
               </div>
 
-              <div className={s.displayName}>
-                <h5>Display Name</h5>
-                <input type="text" placeholder="First Name" />
+              <div className={s.name}>
+                <h5> Name</h5>
+                <input type="text" placeholder="Name" />
+              </div>
+
+              <div className={s.surname}>
+                <h5> Surname</h5>
+                <input type="text" placeholder="Surname" />
+              </div>
+
+              <div className={s.email}>
+                <h5> Email</h5>
+                <input type="text" placeholder="Email" />
               </div>
 
               <div className={s.country}>
@@ -84,6 +101,11 @@ function TeacherSettings() {
               <div className={s.city}>
                 <h5>Living in City</h5>
                 <input type="text" placeholder="City" />
+              </div>
+
+              <div className={s.about}>
+                <h5>About</h5>
+                <input type="text" placeholder="About" />
               </div>
             </div>
           </Col>

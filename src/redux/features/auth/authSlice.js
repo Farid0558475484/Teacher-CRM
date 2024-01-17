@@ -10,11 +10,10 @@ export const authSlice = createSlice({
   },
   reducers: {
     setAuth: (state, action) => {
-      const { success, message, token, user } = action.payload;
-      state.success = success;
-      state.message = message;
-      state.token = token;
-      state.user = user;
+      state.success = action.payload.success;
+      state.message = action.payload.message;
+      state.token = action.payload.token;
+      state.user = action.payload.user;
     },
     logout: (state) => {
       state.success = false;

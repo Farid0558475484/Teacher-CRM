@@ -19,6 +19,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [selectedType, setSelectedType] = useState("student");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleTypeClick = (type) => {
     setSelectedType(type);
@@ -26,6 +27,8 @@ function Login() {
 
   const login = async () => {
     try {
+      setIsLoading(true);
+
       let response;
       if (selectedType === "student") {
         response = await loginStudent({ email, password });
@@ -43,7 +46,11 @@ function Login() {
       sessionStorage.setItem("userId", user.id);
       sessionStorage.setItem("success", true);
       dispatch(setAuth({ success: true, message, token, user }));
-      navigate(`/teacher/${user.id}`);
+
+      const userId = sessionStorage.getItem("userId");
+      console.log("userId:", userId);
+
+      navigate(`/teacher/${userId}`);
     } catch (error) {
       console.error("Error:", error);
 
@@ -52,6 +59,8 @@ function Login() {
       } else {
         setError("Error logging in, please try again later");
       }
+    } finally {
+      setIsLoading(false);
     }
 
     console.log("handleLogin end");
@@ -107,7 +116,9 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
           />
-          <button type="submit">Sign in</button>
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? <div className={s.preloader}></div> : "Sign in"}
+          </button>
         </form>
       </div>
     </section>

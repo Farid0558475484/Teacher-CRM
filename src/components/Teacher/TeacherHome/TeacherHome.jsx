@@ -1,14 +1,16 @@
 import { Col, Container, Row } from "react-bootstrap";
-import photo from "./../../../assets/img/face-man.jpeg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import s from "./TeacherHome.module.scss";
-import { useParams } from "react-router-dom";
+import { useUserIdQuery } from "../../../api/usersApi";
 
 function TeacherHome() {
-  const { userId } = useParams();
-  console.log("TeacherHome component rendered");
-  console.log("userId from URL:", userId);
+  const userId = sessionStorage.getItem("userId");
+  const { data } = useUserIdQuery(userId);
+
+  if (!data) {
+    return "no data...";
+  }
 
   return (
     <section>
@@ -18,7 +20,7 @@ function TeacherHome() {
             <div className={s.info}>
               <Col md={2}>
                 <div className={s.teacherPhoto}>
-                  <img src={photo} alt="teacher photo" />
+                  <img src={data.userProfile.avatarImageUrl} alt="" />
                 </div>
                 <div className={s.visitedInfo}>
                   <p>Visited 3 minutes ago</p>
@@ -26,11 +28,11 @@ function TeacherHome() {
               </Col>
               <Col md={8}>
                 <div className={s.teacherInfo}>
-                  <h1>John Doe</h1>
                   <p>English Teacher</p>
-                  <p>Joined 3 months ago</p>
-                  <p>From United States</p>
-                  <p>Speaks English</p>
+                  <p> Name: {data.userProfile.name}</p>
+                  <p> Surname: {data.userProfile.familyName}</p>
+                  <p> Email: {data.userProfile.email}</p>
+                  <p> Country: {data.userProfile.country}</p>
                 </div>
               </Col>
               <Col md={2}>
