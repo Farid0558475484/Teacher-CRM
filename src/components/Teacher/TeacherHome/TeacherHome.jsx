@@ -1,16 +1,11 @@
+import { useCurrentUserQuery } from "./../../../api/usersApi";
 import { Col, Container, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import s from "./TeacherHome.module.scss";
-import { useUserIdQuery } from "../../../api/usersApi";
 
 function TeacherHome() {
-  const userId = sessionStorage.getItem("userId");
-  const { data } = useUserIdQuery(userId);
-
-  if (!data) {
-    return "no data...";
-  }
+  const { data, isLoading } = useCurrentUserQuery();
 
   return (
     <section>
@@ -20,7 +15,14 @@ function TeacherHome() {
             <div className={s.info}>
               <Col md={2}>
                 <div className={s.teacherPhoto}>
-                  <img src={data.userProfile.avatarImageUrl} alt="" />
+                  <img
+                    src={
+                      isLoading
+                        ? "...isLoading"
+                        : data.userProfile.avatarImageUrl
+                    }
+                    alt={isLoading ? "Photo" : data.userProfile.avatarImageUrl}
+                  />
                 </div>
                 <div className={s.visitedInfo}>
                   <p>Visited 3 minutes ago</p>
@@ -29,10 +31,9 @@ function TeacherHome() {
               <Col md={8}>
                 <div className={s.teacherInfo}>
                   <p>English Teacher</p>
-                  <p> Name: {data.userProfile.name}</p>
-                  <p> Surname: {data.userProfile.familyName}</p>
-                  <p> Email: {data.userProfile.email}</p>
-                  <p> Country: {data.userProfile.country}</p>
+                  <p>
+                    Email: {isLoading ? "...isLoading" : data.userProfile.email}
+                  </p>
                 </div>
               </Col>
               <Col md={2}>

@@ -1,13 +1,14 @@
 import { useState } from "react";
+import { useCurrentUserQuery } from "./../../../api/usersApi";
 import { NavLink } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import logo from "./../../../assets/img/logo.webp";
-import face from "./../../../assets/img/face-man.jpeg";
 import Sidebar from "./../Sidebar/Sidebar";
 import { Offcanvas } from "react-bootstrap";
 import s from "./Header.module.scss";
 
 function Header() {
+  const { data, isLoading } = useCurrentUserQuery();
   const [showSidebar, setShowSidebar] = useState(false);
 
   const toggleSidebar = () => {
@@ -55,9 +56,16 @@ function Header() {
                         onClick={toggleSidebar}
                       >
                         <img
-                          className={s.profileLogo}
-                          src={face}
-                          alt="profile-logo"
+                          src={
+                            isLoading
+                              ? "...isLoading"
+                              : data.userProfile.avatarImageUrl
+                          }
+                          alt={
+                            isLoading
+                              ? "Photo"
+                              : data.userProfile.avatarImageUrl
+                          }
                         />
                       </div>
                     </li>
