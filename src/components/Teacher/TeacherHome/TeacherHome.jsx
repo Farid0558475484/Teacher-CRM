@@ -32,7 +32,25 @@ function TeacherHome() {
                 <div className={s.teacherInfo}>
                   <p>English Teacher</p>
                   <p>
+                    Username:
+                    {isLoading ? "...isLoading" : data.userProfile.username}
+                  </p>
+                  <p>
+                    Name: {isLoading ? "...isLoading" : data.userProfile.name}
+                  </p>
+                  <p>
+                    Surname:
+                    {isLoading ? "...isLoading" : data.userProfile.familyName}
+                  </p>
+                  <p>
+                    Country:
+                    {isLoading ? "...isLoading" : data.userProfile.country}
+                  </p>
+                  <p>
                     Email: {isLoading ? "...isLoading" : data.userProfile.email}
+                  </p>
+                  <p>
+                    Role: {isLoading ? "...isLoading" : data.userProfile.roles}
                   </p>
                 </div>
               </Col>
@@ -52,20 +70,7 @@ function TeacherHome() {
                 <p>Barattson teacher since Oct 8, 2023</p>
               </div>
               <div className={s.desc}>
-                <p>
-                  Hello ! <br />
-                  <br />
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  <br />
-                  <br /> Eius nemo delectus dolor. Adipisci tempora, qui fugit
-                  quod expedita quisquam cupiditate magni beatae fuga, eos quo
-                  officia incidunt dicta ea repellat!
-                  <br />
-                  <br /> Lorem ipsum dolor sit amet, consectetur adipisicing
-                  elit. Eius nemo delectus dolor. Adipisci tempora, qui fugit
-                  quod expedita quisquam cupiditate magni beatae fuga, eos quo
-                  officia incidunt dicta ea repellat!
-                </p>
+                <p>{isLoading ? "...isLoading" : data.userProfile.aboutUser}</p>
               </div>
             </div>
 

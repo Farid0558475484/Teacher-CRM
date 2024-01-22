@@ -37,6 +37,8 @@
       text-align: center;
       img {
         border-radius: 50%;
+        height: 150px;
+        width: 150px;
       }
     }
   }
@@ -47,9 +49,10 @@
     }
   }
 
+  .username,
+  .surname,
   .name,
   .email,
-  .surname,
   .about,
   .country,
   .city {

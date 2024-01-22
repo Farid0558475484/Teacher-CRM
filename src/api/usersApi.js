@@ -15,16 +15,6 @@ export const autApi = baseQuery.injectEndpoints({
       providesTags: ["User"],
     }),
 
-    userUpdate: builder.mutation({
-      query: () => `/api/users/update-user`,
-      method: "PATCH",
-      body: (body) => body,
-      headers: {
-        authorization: `${sessionStorage.getItem("token")}`,
-      },
-      providesTags: ["User"],
-    }),
-
     currentUser: builder.query({
       query: () => ({
         url: `/api/users/get/current-user`,
@@ -37,6 +27,19 @@ export const autApi = baseQuery.injectEndpoints({
         providesTags: ["User"],
       }),
     }),
+    updateUser: builder.mutation({
+      query: () => ({
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: name,
+        }),
+        providesTags: ["User"],
+      }),
+    }),
   }),
 
   overrideExisting: false,
@@ -45,6 +48,6 @@ export const autApi = baseQuery.injectEndpoints({
 export const {
   useUserIdQuery,
   useUsersAllQuery,
-  useUserUpdateMutation,
   useCurrentUserQuery,
+  useUpdateUserMutation,
 } = autApi;
