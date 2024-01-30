@@ -32,7 +32,7 @@ function Login() {
       let response;
       if (selectedType === "student") {
         response = await loginStudent({ email, password });
-      } else {
+      } else if (selectedType === "teacher") {
         response = await loginTeacher({ email, password });
       }
 
@@ -50,7 +50,11 @@ function Login() {
       const userId = sessionStorage.getItem("userId");
       console.log("userId:", userId);
 
-      navigate(`/teacher/${userId}`);
+      if (selectedType === "teacher") {
+        navigate(`/teacher/${userId}`);
+      } else if (selectedType === "student") {
+        navigate(`/student/${userId}`);
+      }
     } catch (error) {
       console.error("Error:", error);
 

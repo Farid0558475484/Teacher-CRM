@@ -2,10 +2,17 @@ import { useCurrentUserQuery } from "./../../../api/usersApi";
 import { Col, Container, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import { useTutorAttendLessonMutation } from "./../../../api/tutorApi";
 import s from "./TeacherHome.module.scss";
 
 function TeacherHome() {
   const { data, isLoading } = useCurrentUserQuery();
+
+  const id = "65943b89c0004e07e9595323";
+
+  const { data: attendLessonData } = useTutorAttendLessonMutation(id);
+
+  console.log("teacher attendLessonData:", attendLessonData);
 
   return (
     <section>

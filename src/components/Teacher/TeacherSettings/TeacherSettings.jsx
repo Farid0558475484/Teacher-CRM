@@ -11,7 +11,7 @@ const TeacherSettings = () => {
     country: "",
     city: "",
     aboutUser: "",
-    photo: null, 
+    photo: null,
   });
 
   const handleChange = (field, value) => {
@@ -61,6 +61,7 @@ const TeacherSettings = () => {
         console.error("Unexpected response format. Expected JSON.");
       }
     } catch (error) {
+      console.error(formData);
       console.error("Error updating profile:", error.message);
     }
   };

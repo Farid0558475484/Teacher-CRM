@@ -29,6 +29,7 @@ export const autApi = baseQuery.injectEndpoints({
     }),
     updateUser: builder.mutation({
       query: () => ({
+        //////////
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

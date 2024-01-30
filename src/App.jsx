@@ -5,6 +5,7 @@ import Login from "./pages/Login/Login";
 import NotFoundPage from "./components/NotFoudPage/NotFoundPage";
 import Teacher from "./pages/Teacher/Teacher";
 import Register from "./pages/Register/Register";
+import Student from "./pages/Student/Student";
 import "./App.css";
 
 function App() {
@@ -14,7 +15,22 @@ function App() {
         <Route path="/" element={<TeacherTable />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/teacher/*" element={<PrivateRouter><Teacher /></PrivateRouter>} />
+        <Route
+          path="/teacher/*"
+          element={
+            <PrivateRouter>
+              <Teacher />
+            </PrivateRouter>
+          }
+        />
+        <Route
+          path="/student/*"
+          element={
+            <PrivateRouter>
+              <Student />
+            </PrivateRouter>
+          }
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
