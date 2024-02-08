@@ -27,20 +27,20 @@ export const autApi = baseQuery.injectEndpoints({
         providesTags: ["User"],
       }),
     }),
-    updateUser: builder.mutation({
-      query: () => ({
-        //////////
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          name: name,
-        }),
-        providesTags: ["User"],
-      }),
-    }),
+    // updateUser: builder.mutation({
+    //   query: () => ({
+    //     //////////
+    //     method: "PATCH",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //     body: JSON.stringify({
+    //       name: name,
+    //     }),
+    //     providesTags: ["User"],
+    //   }),
+    // }),
   }),
 
   overrideExisting: false,
