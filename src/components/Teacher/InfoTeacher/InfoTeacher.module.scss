@@ -1,0 +1,46 @@
+.info {
+  display: flex;
+  background-color: #fff;
+  margin: 20px 0 0 0;
+  padding: 20px;
+  .teacherPhoto {
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+  }
+  .visitedInfo {
+    p {
+      text-align: center;
+      margin-top: 20px;
+    }
+  }
+  .teacherInfo {
+    margin: 0 30px;
+  }
+
+  .teacherInfo,
+  .teacherRating {
+    p {
+      margin: 20px 0;
+    }
+  }
+  .teacherRating {
+    text-align: end;
+  }
+}
+
+.about {
+  margin: 25px 0;
+  padding: 20px;
+  background-color: white;
+  .aboutHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .desc {
+    margin-top: 20px;
+  }
+}

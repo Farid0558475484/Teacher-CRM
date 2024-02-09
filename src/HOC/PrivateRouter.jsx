@@ -1,12 +1,10 @@
 import { Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
 function PrivateRouter({ children }) {
-  const success = useSelector((state) => state.auth.success);
   const token = sessionStorage.getItem("token");
 
-  if (!success && !token) {
+  if ( !token) {
     return <Navigate to="/login" />;
   }
 

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useCurrentUserQuery } from "./../../../api/usersApi";
 import { NavLink } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
+import Skeleton from "react-loading-skeleton";
 import logo from "./../../../assets/img/logo.webp";
 import Sidebar from "./../Sidebar/Sidebar";
 import { Offcanvas } from "react-bootstrap";
@@ -55,18 +56,14 @@ function Header() {
                         className={s.profileSettings}
                         onClick={toggleSidebar}
                       >
-                        <img
-                          src={
-                            isLoading
-                              ? "...isLoading"
-                              : data.userProfile.avatarImageUrl
-                          }
-                          alt={
-                            isLoading
-                              ? "Photo"
-                              : data.userProfile.avatarImageUrl
-                          }
-                        />
+                        {isLoading ? (
+                          <Skeleton height={50} width={50} circle={50} />
+                        ) : (
+                          <img
+                            src={data?.userProfile?.avatarImageUrl}
+                            alt="teacherPhoto"
+                          />
+                        )}
                       </div>
                     </li>
                   </ul>
