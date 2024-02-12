@@ -8,7 +8,7 @@ function Lessons() {
   const { data, isLoading } = useInstructorAllCoursesQuery();
 
   return (
-    <section>
+    <section className={s.lessonSection}>
       <Container>
         <Row>
           <div className={s.lessons}>

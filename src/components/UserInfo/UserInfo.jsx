@@ -1,9 +1,9 @@
-import { useCurrentUserQuery } from "./../../../api/usersApi";
+import { useCurrentUserQuery } from "../../api/usersApi";
 import { Col } from "react-bootstrap";
 import Skeleton from "react-loading-skeleton";
-import s from "./InfoTeacher.module.scss";
+import s from "./UserInfo.module.scss";
 
-function InfoTeacher() {
+function UserInfo() {
   const { data, isLoading } = useCurrentUserQuery();
 
   const teacherInfo = [
@@ -89,4 +89,4 @@ function InfoTeacher() {
   );
 }
 
-export default InfoTeacher;
+export default UserInfo;
