@@ -1,4 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { useInstructorAllCoursesQuery } from "./../../../../api/coursesApi";
 import "react-loading-skeleton/dist/skeleton.css";
 import Skeleton from "react-loading-skeleton";
@@ -6,6 +6,58 @@ import s from "./LessonList.module.scss";
 
 function LessonList() {
   const { data, isLoading } = useInstructorAllCoursesQuery();
+
+  console.log("@LessonList render");
+
+  const renderCourses = () => {
+    if (isLoading) {
+      return (
+        <>
+          <div className={s.cardBody}>
+            <Col md={10}>
+              <p className={s.courseTitle}>
+                <Skeleton count={3} width={200} />
+              </p>
+            </Col>
+            <Col md={2}>
+              <div className={s.rightContent}>
+                <p className={s.times}>
+                  <Skeleton width={200} />
+                </p>
+                <p className={s.prices}>
+                  <Skeleton width={200} />
+                </p>
+              </div>
+            </Col>
+          </div>
+        </>
+      );
+    } else if (data && data.courses) {
+      return data.courses.map((course) => (
+        <Col key={course.id} md={12} className="mb-3">
+          <Card>
+            <Card.Body className={s.cardBody}>
+              <div className={s.leftContent}>
+                <div>
+                  <Card.Title>Category: {course.category}</Card.Title>
+                  <Card.Text>Course Name: {course.title}</Card.Text>
+                  <Card.Text>Course Desc: {course.description}</Card.Text>
+                </div>
+              </div>
+              <div className={s.rightContent}>
+                <Card.Text className={s.time}>
+                  Time: {course.startTime}
+                </Card.Text>
+                <Card.Text className={s.price}>USD {course.price}</Card.Text>
+              </div>
+            </Card.Body>
+          </Card>
+        </Col>
+      ));
+    }
+    return null;
+  };
+
   return (
     <section className={s.lessonSection}>
       <Container>
@@ -15,51 +67,10 @@ function LessonList() {
               {isLoading ? (
                 <Skeleton width={200} height={30} />
               ) : (
-                <>{`Lessons`}</>
+                <>{`Courses`}</>
               )}
             </h2>
-            <div className={s.lessonsList}>
-              {isLoading ? (
-                <>
-                  <Col md={10}>
-                    <p className={s.lessonTitle}>
-                      <Skeleton count={4} width={200} />
-                    </p>
-                  </Col>
-                  <Col md={2}>
-                    <div className={s.cad}>
-                      <p className={s.time}>
-                        <Skeleton width={130} />
-                      </p>
-                      <p className={s.price}>
-                        <Skeleton width={130} />
-                      </p>
-                    </div>
-                  </Col>
-                </>
-              ) : (
-                <>
-                  <Col md={10}>
-                    <p className={s.lessonTitle}>
-                      Category: {data.courses.category}
-                    </p>
-                    <p className={s.lessonTitle}>
-                      Lesson Name: {data.courses.title}
-                    </p>
-                    <p>Lesson Desc: {data.courses.description}</p>
-                    <p>Start Time: {data.courses.startTime.substring(0, 10)}</p>
-                  </Col>
-                  <Col md={2}>
-                    <div className={s.cad}>
-                      <p className={s.time}>
-                        Time: {data.courses.startTime.substring(11, 16)}
-                      </p>
-                      <p className={s.price}>USD {data.courses.price}</p>
-                    </div>
-                  </Col>
-                </>
-              )}
-            </div>
+            <div className={s.lessonsList}>{renderCourses()}</div>
           </div>
         </Row>
       </Container>

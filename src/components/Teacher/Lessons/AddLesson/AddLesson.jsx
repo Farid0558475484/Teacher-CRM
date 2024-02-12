@@ -9,6 +9,7 @@ function AddLesson() {
     duration: 0,
     category: "",
     tutor: "",
+    creditsSpent:0
   });
 
   const token = sessionStorage.getItem("token");
@@ -32,6 +33,8 @@ function AddLesson() {
         {
           method: "POST",
           headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(formData),
@@ -50,6 +53,7 @@ function AddLesson() {
         duration: 0,
         category: "",
         tutor: "",
+        creditsSpent: 0
       });
       handleCloseModal();
     } catch (error) {
@@ -110,7 +114,7 @@ function AddLesson() {
                   />
                 </Form.Group>
                 <Form.Group controlId="duration">
-                  <Form.Label>Duration (in hours)</Form.Label>
+                  <Form.Label>Duration (in minutes)</Form.Label>
                   <Form.Control
                     type="number"
                     name="duration"
@@ -139,6 +143,18 @@ function AddLesson() {
                     required
                   />
                 </Form.Group>
+                   <Form.Group controlId="creditsSpent">
+                  <Form.Label>Coast Course</Form.Label>
+                  <Form.Control
+                    type="number"
+                    name="creditsSpent"
+                    value={formData.creditsSpent}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+
+
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={handleCloseModal}>

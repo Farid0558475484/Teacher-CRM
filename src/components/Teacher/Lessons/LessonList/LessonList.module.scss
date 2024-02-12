@@ -1,23 +1,24 @@
 .lessonSection {
   margin: 20px 0;
+  padding: 20px;
+
   .lessons {
     background-color: white;
     padding: 20px;
-    .lessonsList {
-      padding: 20px;
+
+    h2 {
       margin: 20px 0;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      border: 2px solid rgb(241, 232, 232);
     }
-    .cad {
+
+    .rightContent {
       .time {
         background-color: rgb(239, 76, 76);
         color: white;
         border-radius: 20px;
         text-align: center;
         margin-bottom: 10px;
+        padding: 4px 15px;
+        
       }
 
       .price {
@@ -27,5 +28,10 @@
         text-align: center;
       }
     }
+  }
+  .cardBody {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
