@@ -1,6 +1,6 @@
 import { Container, Row } from "react-bootstrap";
 import UserInfo from "../../UserInfo/UserInfo";
-import Lesson from "./../Lessons/Lessons";
+import LessonList from "./../Lessons/LessonList/LessonList";
 import Resume from "../Resume/Resume";
 
 function TeacherHome() {
@@ -8,7 +8,7 @@ function TeacherHome() {
     <Container>
       <Row>
         <UserInfo />
-        <Lesson />
+        <LessonList />
         <Resume />
       </Row>
     </Container>

@@ -13,8 +13,19 @@ export const autApi = baseQuery.injectEndpoints({
         providesTags: ["Courses"],
       }),
     }),
+
+    createCourse: builder.mutation({
+      query: () => ({
+        url: "/api/courses/create-course",
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        providesTags: ["Courses"],
+      }),
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useInstructorAllCoursesQuery } = autApi;
+export const { useInstructorAllCoursesQuery, useCreateCourseMutation } = autApi;

@@ -9,8 +9,6 @@ export const studentApi = baseQuery.injectEndpoints({
         url: `/api/students/attend-lesson/${lessonId}`,
         method: "POST",
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
           Authorization: `${token}`,
         },
 

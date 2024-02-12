@@ -8,5 +8,6 @@
     "Raiting",
     "reduxjs",
     "webp"
-  ]
+  ],
+  "git.ignoreLimitWarning": true
 }
