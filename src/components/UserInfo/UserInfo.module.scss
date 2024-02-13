@@ -1,8 +1,9 @@
 .info {
   display: flex;
   background-color: #fff;
-  margin: 20px 0 0 0;
-  padding: 20px;
+  margin: 40px 0 0 0;
+  padding: 30px;
+  border-radius: 10px;
   .teacherPhoto {
     img {
       width: 100%;
@@ -32,9 +33,10 @@
 }
 
 .about {
-  margin: 25px 0;
-  padding: 20px;
+  margin: 20px 0 0px 0;
+  padding: 30px;
   background-color: white;
+  border-radius: 10px;
   .aboutHeader {
     display: flex;
     justify-content: space-between;

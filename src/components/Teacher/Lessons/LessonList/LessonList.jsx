@@ -35,7 +35,7 @@ function LessonList() {
     } else if (data && data.courses) {
       return data.courses.map((course) => (
         <Col key={course.id} md={12} className="mb-3">
-          <Card>
+          <Card className={s.card}>
             <Card.Body className={s.cardBody}>
               <div className={s.leftContent}>
                 <div>
@@ -63,7 +63,7 @@ function LessonList() {
       <Container>
         <Row>
           <div className={s.lessons}>
-            <h2>
+            <h2 className={s.title}>
               {isLoading ? (
                 <Skeleton width={200} height={30} />
               ) : (

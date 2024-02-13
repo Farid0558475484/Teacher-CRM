@@ -17,6 +17,7 @@ function Header() {
   };
 
   const userId = sessionStorage.getItem("userId");
+  
   return (
     <header className={s.header}>
       <section className={s.teacherHeader}>

@@ -15,7 +15,9 @@ function Teacher() {
   return (
     <>
       <Header />
-      <main>
+      <main
+        style={{ backgroundImage: "linear-gradient(270deg, #a8518a, #ec2a7b)" }}
+      >
         <Routes>
           <Route path="/:userId/*" element={<TeacherHome />} />
           <Route path="/teacher-settings" element={<TeacherSettings />} />

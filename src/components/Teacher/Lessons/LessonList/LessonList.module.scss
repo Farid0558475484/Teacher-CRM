@@ -1,28 +1,23 @@
 .lessonSection {
-  margin: 20px 0;
-  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0 !important;
 
   .lessons {
     background-color: white;
-    padding: 20px;
-
-    h2 {
-      margin: 20px 0;
-    }
-
+    padding: 30px;
+    border-radius: 10px;
     .rightContent {
       .time {
-        background-color: rgb(239, 76, 76);
+        background-color: #db3580;
         color: white;
         border-radius: 20px;
         text-align: center;
         margin-bottom: 10px;
         padding: 4px 15px;
-        
       }
 
       .price {
-        background-color: rgb(232, 212, 212);
+        background-color: rgb(241 239 239);
         color: rgb(222, 50, 50);
         border-radius: 20px;
         text-align: center;
@@ -33,5 +28,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .card {
+    box-shadow: 0px 0px 18px 18px rgba(34, 60, 80, 0.09);
+  }
+
+  .title {
+    margin: 20px 0 40px 0;
   }
 }

@@ -6,7 +6,9 @@ function Student() {
   return (
     <>
       <Header />
-      <main>
+      <main
+        style={{ backgroundImage: "linear-gradient(270deg, #a8518a, #ec2a7b)" }}
+      >
         <Routes>
           <Route path="/:userId/*" element={<StudentHome />} />
         </Routes>

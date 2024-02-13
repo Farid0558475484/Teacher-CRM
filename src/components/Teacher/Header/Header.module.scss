@@ -1,30 +1,30 @@
 header {
   border-bottom: 2px solid #e5e5e5;
-}
-.row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-ul {
-  display: flex;
-  justify-content: flex-end;
-  list-style: none;
-  margin-left: auto;
-  align-items: center;
-  li {
-    margin-left: 20px;
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-}
-
-.profileSettings {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
+  ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    margin-left: auto;
+    align-items: center;
+    gap: 30px;
+    li {
+      margin-left: 20px;
+    }
+  }
+  .profileSettings {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
   }
 }

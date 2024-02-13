@@ -3,9 +3,9 @@ import s from "./Resume.module.scss";
 
 function Resume() {
   return (
-    <section>
+    <section className={s.resumeSection}>
       <div className={s.resume}>
-        <h2>Resume</h2>
+        <h2 className={s.title}>Resume</h2>
 
         <div className={s.resumeInfo}>
           <Col md={4}>
