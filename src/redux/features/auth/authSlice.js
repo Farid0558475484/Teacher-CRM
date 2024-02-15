@@ -7,6 +7,7 @@ export const authSlice = createSlice({
     message: "",
     token: null,
     user: null,
+    role: null,
   },
   reducers: {
     setAuth: (state, action) => {
@@ -14,12 +15,14 @@ export const authSlice = createSlice({
       state.message = action.payload.message;
       state.token = action.payload.token;
       state.user = action.payload.user;
+      state.role = action.payload.role;
     },
     logout: (state) => {
       state.success = false;
       state.message = "";
       state.token = null;
       state.user = null;
+      state.role = null;
     },
   },
 });

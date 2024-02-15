@@ -33,8 +33,8 @@ function LessonList() {
         </>
       );
     } else if (data && data.courses) {
-      return data.courses.map((course) => (
-        <Col key={course.id} md={12} className="mb-3">
+      return data.courses.map((course,index) => (
+        <Col key={index} md={12} className="mb-3">
           <Card className={s.card}>
             <Card.Body className={s.cardBody}>
               <div className={s.leftContent}>

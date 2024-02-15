@@ -3,7 +3,11 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: rgb(66, 66, 153);
+  background-image: linear-gradient(
+    270deg,
+    rgb(168, 81, 138),
+    rgb(236, 42, 123)
+  );
 }
 
 .loginForm {
@@ -11,12 +15,13 @@
   border: 1px solid #ccc;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
+  max-width: 500px;
   width: 100%;
   text-align: center;
 
   h2 {
     font-size: 40px;
+    margin: 40px 0;
     color: #333;
   }
 
@@ -29,17 +34,15 @@
   }
 
   button {
-    background-color: rgb(66, 66, 153);
+    margin: 20px 0;
+    background-color: #db3580;
     color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-
-  button:hover {
-    background-color: rgb(84, 84, 187);
+    font-size: 30px;
   }
 }
 
@@ -51,31 +54,31 @@
 .typePerson {
   display: flex;
   justify-content: space-around;
+  border: 3px solid #db3580;
+  margin: 20px 0;
 }
 
 .student,
 .teacher {
   padding: 10px;
   text-decoration: none;
-  color: rgb(66, 66, 153);
-  border: 3px solid rgb(66, 66, 153);
+  color: #db3580;
   cursor: pointer;
   transition: background-color 0.3s ease;
   border-radius: 5px;
   font-size: 25px;
+  width: 100%;
 }
 
 .student.selected {
   color: #fff;
-  background-color: rgb(66, 66, 153);
+  background-color: #db3580;
 }
 
 .teacher.selected {
   color: #fff;
-  background-color: rgb(66, 66, 153);
+  background-color: #db3580;
 }
-
-
 
 .preloader-container {
   display: flex;
@@ -87,7 +90,7 @@
 .preloader {
   border: 8px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
-  border-top: 8px solid #3498db;
+  border-top: 8px solid #db3580;;
   width: 50px;
   height: 50px;
   animation: spin 1s linear infinite;

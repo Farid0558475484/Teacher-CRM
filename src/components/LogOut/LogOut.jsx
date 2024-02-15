@@ -12,11 +12,24 @@ function LogoutButton() {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("userId");
     sessionStorage.removeItem("success");
+    sessionStorage.removeItem("role");
 
     navigate("/login");
   };
 
-  return <button onClick={handleLogout}>Logout</button>;
+  return (
+    <div style={{ textAlign: "center" }}>
+      <button
+        style={{
+          backgroundColor: "#db3580",
+          borderRadius: "10px",
+        }}
+        onClick={handleLogout}
+      >
+        Logout
+      </button>
+    </div>
+  );
 }
 
 export default LogoutButton;

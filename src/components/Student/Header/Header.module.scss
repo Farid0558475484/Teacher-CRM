@@ -1,14 +1,14 @@
 header {
   border-bottom: 2px solid #e5e5e5;
-}
-
-.logoutBtn {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-.logo {
-  img {
-    width: 200px;
+  .logo {
+    img {
+      width: 150px;
+    }
+  }
+  .profileSettings {
+    img {
+      width: 40px;
+      height: 40px;
+    }
   }
 }

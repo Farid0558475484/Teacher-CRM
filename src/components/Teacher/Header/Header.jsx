@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useCurrentUserQuery } from "./../../../api/usersApi";
+import { useCurrentUserQuery } from "../../../api/usersApi";
 import { NavLink } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import Skeleton from "react-loading-skeleton";
 import logo from "./../../../assets/img/logo.webp";
-import Sidebar from "./../Sidebar/Sidebar";
+import Sidebar from "../Sidebar/Sidebar";
 import { Offcanvas } from "react-bootstrap";
 import s from "./Header.module.scss";
 
@@ -17,7 +17,7 @@ function Header() {
   };
 
   const userId = sessionStorage.getItem("userId");
-  
+
   return (
     <header className={s.header}>
       <section className={s.teacherHeader}>
@@ -62,7 +62,7 @@ function Header() {
                         ) : (
                           <img
                             src={data?.userProfile?.avatarImageUrl}
-                            alt="teacherPhoto"
+                            alt="Avatar"
                           />
                         )}
                       </div>

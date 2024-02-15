@@ -18,7 +18,9 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const [selectedType, setSelectedType] = useState("student");
+  const [selectedType, setSelectedType] = useState(
+    loginStudent.role || loginTeacher.role || "student"
+  );
   const [isLoading, setIsLoading] = useState(false);
 
   const handleTypeClick = (type) => {
@@ -32,7 +34,7 @@ function Login() {
       let response;
       if (selectedType === "student") {
         response = await loginStudent({ email, password });
-      } else if (selectedType === "teacher") {
+      } else if (selectedType === "tutor") {
         response = await loginTeacher({ email, password });
       }
 
@@ -41,16 +43,18 @@ function Login() {
       console.log("Received token:", token);
       console.log("Login success:", true);
       console.log("User:", user);
+      console.log("@User Role:", user.role);
 
       sessionStorage.setItem("token", token);
       sessionStorage.setItem("userId", user.id);
       sessionStorage.setItem("success", true);
+      sessionStorage.setItem("role", user.role);
       dispatch(setAuth({ success: true, message, token, user }));
 
       const userId = sessionStorage.getItem("userId");
       console.log("userId:", userId);
 
-      if (selectedType === "teacher") {
+      if (selectedType === "tutor") {
         navigate(`/teacher/${userId}`);
       } else if (selectedType === "student") {
         navigate(`/student/${userId}`);
@@ -92,9 +96,9 @@ function Login() {
           </NavLink>
           <NavLink
             className={`${s.teacher} ${
-              selectedType === "teacher" ? s.selected : ""
+              selectedType === "tutor" ? s.selected : ""
             }`}
-            onClick={() => handleTypeClick("teacher")}
+            onClick={() => handleTypeClick("tutor")}
           >
             Teacher
           </NavLink>
