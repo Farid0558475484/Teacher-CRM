@@ -5,7 +5,7 @@ import Card from "react-bootstrap/Card";
 import s from "./StudentWallet.module.scss";
 
 function StudentWallet() {
-  const userId = sessionStorage.getItem("userId");
+  const userId = localStorage.getItem("userId");
   const [showModal, setShowModal] = useState(false);
   const [purchaseStatus, setPurchaseStatus] = useState(null);
   const [paymentData, setPaymentData] = useState({
@@ -80,8 +80,7 @@ function StudentWallet() {
           <Modal.Title>Fill Payment Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-
-        <Form.Group>
+          <Form.Group>
             <Form.Label>studentId</Form.Label>
             <Form.Control
               type="text"

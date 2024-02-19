@@ -1,14 +1,14 @@
 import { baseQuery } from "./api";
-const token = sessionStorage.getItem("token");
+const token = localStorage.getItem("token");
 
-export const autApi = baseQuery.injectEndpoints({
-  tagTypes: ["User"],
+export const usersApi = baseQuery.injectEndpoints({
   endpoints: (builder) => ({
     userId: builder.query({
       query: (userId) => `/api/users/${userId}`,
       headers: {
-        authorization: `${sessionStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
+      providesTags: ["User"],
     }),
     usersAll: builder.query({
       query: () => `/api/users`,
@@ -51,4 +51,4 @@ export const {
   useUsersAllQuery,
   useCurrentUserQuery,
   useUpdateUserMutation,
-} = autApi;
+} = usersApi;

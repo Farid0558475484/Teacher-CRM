@@ -9,10 +9,10 @@ function LogoutButton() {
   const handleLogout = () => {
     dispatch(logout());
 
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("userId");
-    sessionStorage.removeItem("success");
-    sessionStorage.removeItem("role");
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("success");
+    localStorage.removeItem("role");
 
     navigate("/login");
   };

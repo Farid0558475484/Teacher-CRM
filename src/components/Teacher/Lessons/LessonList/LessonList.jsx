@@ -7,8 +7,6 @@ import s from "./LessonList.module.scss";
 function LessonList() {
   const { data, isLoading } = useInstructorAllCoursesQuery();
 
-  console.log("@LessonList render");
-
   const renderCourses = () => {
     if (isLoading) {
       return (

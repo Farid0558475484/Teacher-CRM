@@ -30,7 +30,7 @@ const TeacherSettings = () => {
   };
 
   const handleProfileUpdate = async () => {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     const formData = new FormData();
 
     Object.entries(userData).forEach(([key, value]) => {

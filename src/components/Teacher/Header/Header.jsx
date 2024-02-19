@@ -16,7 +16,7 @@ function Header() {
     setShowSidebar(!showSidebar);
   };
 
-  const userId = sessionStorage.getItem("userId");
+  const userId = localStorage.getItem("userId");
 
   return (
     <header className={s.header}>
@@ -34,6 +34,11 @@ function Header() {
               <div>
                 <nav>
                   <ul className={s.ul}>
+                    <li>
+                      <NavLink to={`/`} className={s.item}>
+                        Home
+                      </NavLink>
+                    </li>
                     <li>
                       <NavLink
                         to={`/teacher/teacher-settings`}

@@ -45,19 +45,26 @@ function Login() {
       console.log("User:", user);
       console.log("@User Role:", user.role);
 
-      sessionStorage.setItem("token", token);
-      sessionStorage.setItem("userId", user.id);
-      sessionStorage.setItem("success", true);
-      sessionStorage.setItem("role", user.role);
+      localStorage.setItem("token", token);
+      localStorage.setItem("userId", user.id);
+      localStorage.setItem("success", true);
+      localStorage.setItem("role", user.role);
+
       dispatch(setAuth({ success: true, message, token, user }));
 
-      const userId = sessionStorage.getItem("userId");
+      const userId = localStorage.getItem("userId");
       console.log("userId:", userId);
 
-      if (selectedType === "tutor") {
-        navigate(`/teacher/${userId}`);
-      } else if (selectedType === "student") {
-        navigate(`/student/${userId}`);
+      // if (selectedType === "tutor") {
+      //   navigate(`/teacher/${userId}`);
+      //   location.reload();
+      // } else if (selectedType === "student") {
+      //   navigate(`/student/${userId}`);
+      //   location.reload();
+      // }
+      if (selectedType === "tutor" || selectedType === "student") {
+        navigate(`/`);
+        // location.reload();
       }
     } catch (error) {
       console.error("Error:", error);

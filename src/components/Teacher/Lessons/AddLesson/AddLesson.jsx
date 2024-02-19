@@ -9,10 +9,10 @@ function AddLesson() {
     duration: 0,
     category: "",
     tutor: "",
-    creditsSpent:0
+    creditsSpent: 0,
   });
 
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
   const [showModal, setShowModal] = useState(false);
 
@@ -53,7 +53,7 @@ function AddLesson() {
         duration: 0,
         category: "",
         tutor: "",
-        creditsSpent: 0
+        creditsSpent: 0,
       });
       handleCloseModal();
     } catch (error) {
@@ -143,7 +143,7 @@ function AddLesson() {
                     required
                   />
                 </Form.Group>
-                   <Form.Group controlId="creditsSpent">
+                <Form.Group controlId="creditsSpent">
                   <Form.Label>Coast Course</Form.Label>
                   <Form.Control
                     type="number"
@@ -153,8 +153,6 @@ function AddLesson() {
                     required
                   />
                 </Form.Group>
-
-
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={handleCloseModal}>

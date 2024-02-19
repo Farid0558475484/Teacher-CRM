@@ -1,6 +1,6 @@
 import { baseQuery } from "./api";
 
-export const autApi = baseQuery.injectEndpoints({
+export const authApi = baseQuery.injectEndpoints({
   tagTypes: ["User"],
   endpoints: (builder) => ({
     signInStudent: builder.mutation({
@@ -9,7 +9,7 @@ export const autApi = baseQuery.injectEndpoints({
         user,
         method: "POST",
         body: user,
-        providesTags: ["User"],
+        invalidatesTags: ["User"],
       }),
     }),
     signInTeacher: builder.mutation({
@@ -18,11 +18,11 @@ export const autApi = baseQuery.injectEndpoints({
         user,
         method: "POST",
         body: user,
-        providesTags: ["User"],
+        invalidatesTags: ["User"],
       }),
     }),
   }),
   overrideExisting: false,
 });
 
-export const { useSignInStudentMutation, useSignInTeacherMutation } = autApi;
+export const { useSignInStudentMutation, useSignInTeacherMutation } = authApi;

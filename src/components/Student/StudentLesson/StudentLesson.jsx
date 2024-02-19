@@ -7,7 +7,7 @@ function StudentLesson() {
   const [meetingUrl, setMeetingUrl] = useState("");
 
   const lessonId = "65943b89c0004e07e9595323";
-  const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
   const handleAttendLesson = async () => {
     console.log("Attending lesson...");

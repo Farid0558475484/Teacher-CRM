@@ -1,7 +1,7 @@
 import { baseQuery } from "./api";
-const token = sessionStorage.getItem("token");
+const token = localStorage.getItem("token");
 
-export const autApi = baseQuery.injectEndpoints({
+export const coursesApi = baseQuery.injectEndpoints({
   tagTypes: ["Courses"],
   endpoints: (builder) => ({
     instructorAllCourses: builder.query({
@@ -21,11 +21,21 @@ export const autApi = baseQuery.injectEndpoints({
         headers: {
           Authorization: `Bearer ${token}`,
         },
-        providesTags: ["Courses"],
+        invalidatesTags: ["Courses"],
       }),
+    }),
+
+    allCourses: builder.query({
+      query: () => `/api/courses/all`,
+      method: "POST",
+      providesTags: ["Courses"],
     }),
   }),
   overrideExisting: false,
 });
 
-export const { useInstructorAllCoursesQuery, useCreateCourseMutation } = autApi;
+export const {
+  useInstructorAllCoursesQuery,
+  useCreateCourseMutation,
+  useAllCoursesQuery,
+} = coursesApi;

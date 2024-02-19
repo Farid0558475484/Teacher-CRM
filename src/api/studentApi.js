@@ -1,5 +1,5 @@
 import { baseQuery } from "./api";
-const token = sessionStorage.getItem("token");
+const token = localStorage.getItem("token");
 
 export const studentApi = baseQuery.injectEndpoints({
   tagTypes: ["User"],
@@ -12,7 +12,7 @@ export const studentApi = baseQuery.injectEndpoints({
           Authorization: `${token}`,
         },
 
-        providesTags: ["User"],
+        invalidatesTags: ["User"],
       }),
     }),
   }),
