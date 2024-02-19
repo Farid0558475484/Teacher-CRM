@@ -55,16 +55,8 @@ function Login() {
       const userId = localStorage.getItem("userId");
       console.log("userId:", userId);
 
-      // if (selectedType === "tutor") {
-      //   navigate(`/teacher/${userId}`);
-      //   location.reload();
-      // } else if (selectedType === "student") {
-      //   navigate(`/student/${userId}`);
-      //   location.reload();
-      // }
       if (selectedType === "tutor" || selectedType === "student") {
         navigate(`/`);
-        // location.reload();
       }
     } catch (error) {
       console.error("Error:", error);

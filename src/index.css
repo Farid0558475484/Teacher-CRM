@@ -35,3 +35,8 @@ li {
   box-sizing: border-box;
   cursor: pointer;
 }
+
+:root {
+  --pink: #ec2a7b;
+  --pink-light: #dd3f81;
+}

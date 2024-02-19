@@ -1,0 +1,52 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 0 100px 0;
+
+  .login {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    .basket {
+      color: #db3580;
+      font-size: 40px;
+      position: relative;
+      .basketCount {
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        background-color: white;
+
+        color: #db3580;
+        padding: 0px 5px;
+        border-radius: 50%;
+        p {
+          margin: 0;
+          font-size: 25px;
+        }
+      }
+    }
+    .studentProfile svg {
+      color: #db3580;
+      font-size: 30px;
+    }
+    // .loginButton {
+    //   background-color: #db3580;
+    //   border: none;
+    //   padding: 10px 20px;
+    //   border-radius: 10px;
+    //   font-size: 20px;
+    //   cursor: pointer;
+    //   color: #fff;
+    //   text-decoration: none;
+    // }
+  }
+
+  .title {
+    h1 {
+      color: #db3580;
+      border-bottom: 5px solid #db3580;
+    }
+  }
+}
