@@ -1,9 +1,19 @@
 import { useAllCoursesQuery } from "./../../api/coursesApi";
+import { useState } from "react";
 import { Card, CardGroup, Col } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import s from "./Courses.module.scss";
 
 function Courses() {
   const { data } = useAllCoursesQuery();
+  const [showModal, setShowModal] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState(null);
+
+  const handleBookClick = (course) => {
+    setSelectedCourse(course);
+    setShowModal(true);
+  };
+
   return (
     <div>
       <div className={s.cards}>
@@ -19,7 +29,6 @@ function Courses() {
                   <Card.Img
                     variant="top"
                     src={lesson.img || "https://picsum.photos/200/200"}
-                    // style={{ width: "100%", height: "250px" }}
                   />
                   <p className={s.lessonType}>{lesson.price} - Azn</p>
                   <p className={s.lessonName}>{lesson.description}</p>
@@ -27,7 +36,12 @@ function Courses() {
                 <Card.Body className={s.cardBody}>
                   <Card.Text className={s.cardDesc}>
                     {lesson.title}
-                    <button className={s.addToCard}> Book</button>
+                    <button
+                      className={s.addToCard}
+                      onClick={() => handleBookClick(lesson)}
+                    >
+                      Book
+                    </button>
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -35,6 +49,22 @@ function Courses() {
           ))}
         </CardGroup>
       </div>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Подтверждение покупки</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedCourse && (
+            <>
+              <p>Вы хотите купить курс `{selectedCourse.title}`?</p>
+              <Button variant="primary" onClick={() => console.log("Купить")}>
+                Buy
+              </Button>
+            </>
+          )}
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }
