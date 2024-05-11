@@ -18,7 +18,7 @@ function Headers() {
           <Row>
             <div className={s.header}>
               <div className={s.title}>
-                <h1>Online - Barattson</h1>
+                <h1>Morooq - Course</h1>
               </div>
 
               <div className={s.login}>

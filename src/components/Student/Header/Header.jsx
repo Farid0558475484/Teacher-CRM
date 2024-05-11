@@ -5,7 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useCurrentUserQuery } from "./../../../api/usersApi";
 import Skeleton from "react-loading-skeleton";
 import Sidebar from "./../Sidebar/Sidebar";
-import logo from "./../../../assets/img/logo.webp";
+import logo from "./../../../assets/img/morooq.jpeg";
 import s from "./Header.module.scss";
 
 function Header() {

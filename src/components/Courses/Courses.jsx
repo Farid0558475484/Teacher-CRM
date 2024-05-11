@@ -16,30 +16,21 @@ function Courses() {
     setShowModal(true);
   };
 
-  // let userId = localStorage.getItem("userId");
-  // console.log("userId", userId);
-
-  // let courseId = selectedCourse?.id;
-  // console.log("courseId", courseId);
-
   const makePayment = async () => {
     console.log("makePayment", selectedCourse);
     const stripe = await loadStripe("pk_test_mAu0YX27q4uYAhqiP6LXOFhj");
 
     const body = {
-      // price: selectedCourse.price,
-      // title: selectedCourse.title,
-      // description: selectedCourse.description,
       userId: localStorage.getItem("userId"),
-      
       courseId: selectedCourse._id,
     };
+    const token = localStorage.getItem("token");
 
     const headers = {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     };
 
-    // const apiUrl = "http://localhost:8089";
     const apiUrl = "http://localhost:8089/api/students/schedule-course";
 
     // const response = await fetch(`${apiUrl}/create-checkout-session`, {
