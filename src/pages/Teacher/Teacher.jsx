@@ -12,7 +12,6 @@ import AccountSettings from "./../../components/Teacher/AccountSettings/AccountS
 import TeacherHome from "./../../components/Teacher/TeacherHome/TeacherHome";
 
 function Teacher() {
-  console.log("@Teacher");
   return (
     <>
       <Header />

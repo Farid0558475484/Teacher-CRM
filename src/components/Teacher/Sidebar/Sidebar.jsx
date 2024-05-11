@@ -8,7 +8,7 @@ function Sidebar() {
       <ul className={s.sidebarUl}>
         <li>
           <NavLink to={`/teacher/lessons`} className={s.item}>
-            My Lessons
+            My Courses
           </NavLink>
         </li>
         <li>

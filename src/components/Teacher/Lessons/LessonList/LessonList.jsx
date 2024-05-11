@@ -4,8 +4,9 @@ import "react-loading-skeleton/dist/skeleton.css";
 import Skeleton from "react-loading-skeleton";
 import s from "./LessonList.module.scss";
 
-function LessonList() {
+function LessonList({ AddLessonsButton, AddCourses }) {
   const { data, isLoading } = useInstructorAllCoursesQuery();
+  console.log(data);
 
   const renderCourses = () => {
     if (isLoading) {
@@ -31,26 +32,47 @@ function LessonList() {
         </>
       );
     } else if (data && data.courses) {
-      return data.courses.map((course,index) => (
-        <Col key={index} md={12} className="mb-3">
-          <Card className={s.card}>
-            <Card.Body className={s.cardBody}>
-              <div className={s.leftContent}>
-                <div>
-                  <Card.Title>Category: {course.category}</Card.Title>
-                  <Card.Text>Course Name: {course.title}</Card.Text>
-                  <Card.Text>Course Desc: {course.description}</Card.Text>
+      return data.courses.map((course, index) => (
+        <>
+          <Col key={index} md={12} className="mb-3">
+            <Card className={s.card}>
+              <Card.Body className={s.cardBody}>
+                <div className={s.leftContent}>
+                  <div>
+                    <Card.Title>Category: {course.category}</Card.Title>
+                    <Card.Text>Course Name: {course.title}</Card.Text>
+                    <Card.Text>Course Desc: {course.description}</Card.Text>
+                  </div>
                 </div>
-              </div>
-              <div className={s.rightContent}>
-                <Card.Text className={s.time}>
-                  Time: {course.startTime}
-                </Card.Text>
-                <Card.Text className={s.price}>USD {course.price}</Card.Text>
-              </div>
-            </Card.Body>
-          </Card>
-        </Col>
+                <div className={s.rightContent}>
+                  <Card.Text className={s.time}>
+                    Duration: {course.duration} min
+                  </Card.Text>
+                  <Card.Text className={s.price}>
+                    USD {course.creditsSpent}
+                  </Card.Text>
+                </div>
+              </Card.Body>
+              <Card.Body>
+                <Card>
+                  {course?.lesson?.map((lesson, index) => (
+                    <>
+                      <Card.Body className={s.cardBody} key={index}>
+                        <Card.Title>Lesson: {lesson?.title}</Card.Title>
+                        <Card.Text>Slug: {lesson?.slug}</Card.Text>
+                        <Card.Text>
+                          CreditsSpent: {lesson?.creditsSpent}
+                        </Card.Text>
+                        <Card.Text>Duration: {lesson?.duration}</Card.Text>
+                      </Card.Body>
+                    </>
+                  ))}
+                  {AddLessonsButton && <AddLessonsButton />}
+                </Card>
+              </Card.Body>
+            </Card>
+          </Col>
+        </>
       ));
     }
     return null;
@@ -60,12 +82,20 @@ function LessonList() {
     <section className={s.lessonSection}>
       <Container>
         <Row>
-          <div className={s.lessons}>
+          <div className={s.lessons} style={{ margin: "20px 0" }}>
             <h2 className={s.title}>
               {isLoading ? (
                 <Skeleton width={200} height={30} />
               ) : (
-                <>{`Courses`}</>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <div>{`Courses`}</div> <>{AddCourses && <AddCourses />}</>
+                </div>
               )}
             </h2>
             <div className={s.lessonsList}>{renderCourses()}</div>

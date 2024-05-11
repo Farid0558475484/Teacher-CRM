@@ -11,39 +11,6 @@ export default function CheckoutForm({ paymentId }) {
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const confirmPayment = () => {
-    // if (!paymentId) {
-    //   setMessage("Payment ID is missing.");
-    //   return;
-    // }
-    // setIsLoading(true);
-    // fetch("http://localhost:8089/api/payments/confirm-payment-intent", {
-    //   method: "POST",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     paymentId: paymentId,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     if (data.paymentIntent.status === "succeeded") {
-    //       setMessage("Payment confirmed successfully.");
-    //     } else {
-    //       setMessage("Failed to confirm payment.");
-    //     }
-    //     setIsLoading(false);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error confirming payment:", error);
-    //     setMessage("An unexpected error occurred.");
-    //     setIsLoading(false);
-    //   });
-  };
-
   useEffect(() => {
     if (!stripe) {
       return;

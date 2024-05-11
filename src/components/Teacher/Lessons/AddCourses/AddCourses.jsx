@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Container, Row, Form, Button, Modal } from "react-bootstrap";
 
-function AddLesson() {
+function AddCourses() {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -52,7 +52,7 @@ function AddLesson() {
         date: "",
         duration: 0,
         category: "",
-        tutor: "",
+        tutor: "string",
         creditsSpent: 0,
       });
       handleCloseModal();
@@ -70,12 +70,20 @@ function AddLesson() {
     <section>
       <Container>
         <Row>
-          <h2>Add Courses</h2>
-        </Row>
-        <Row>
-          <Button variant="primary" onClick={handleShowModal}>
+          <button
+            onClick={handleShowModal}
+            style={{
+              backgroundColor: "#db3580",
+              color: "white",
+              padding: "10px",
+              borderRadius: "8px",
+              border: "none",
+              margin: "20px ",
+              fontSize: "20px",
+            }}
+          >
             Add Course
-          </Button>
+          </button>
           <Modal show={showModal} onHide={handleCloseModal}>
             <Modal.Header closeButton>
               <Modal.Title>Add Course</Modal.Title>
@@ -133,7 +141,7 @@ function AddLesson() {
                     required
                   />
                 </Form.Group>
-                <Form.Group controlId="tutor">
+                {/* <Form.Group controlId="tutor">
                   <Form.Label>Tutor</Form.Label>
                   <Form.Control
                     type="text"
@@ -142,7 +150,7 @@ function AddLesson() {
                     onChange={handleChange}
                     required
                   />
-                </Form.Group>
+                </Form.Group> */}
                 <Form.Group controlId="creditsSpent">
                   <Form.Label>Coast Course</Form.Label>
                   <Form.Control
@@ -170,4 +178,4 @@ function AddLesson() {
   );
 }
 
-export default AddLesson;
+export default AddCourses;
