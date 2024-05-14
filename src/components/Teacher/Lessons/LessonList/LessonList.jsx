@@ -4,7 +4,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import Skeleton from "react-loading-skeleton";
 import s from "./LessonList.module.scss";
 
-function LessonList({ AddLessonsButton, AddCourses }) {
+function LessonList({ AddLessons, AddCourses }) {
   const { data, isLoading } = useInstructorAllCoursesQuery();
   console.log(data);
 
@@ -67,7 +67,7 @@ function LessonList({ AddLessonsButton, AddCourses }) {
                       </Card.Body>
                     </>
                   ))}
-                  {AddLessonsButton && <AddLessonsButton />}
+                  {AddLessons && <AddLessons courseId={course._id} />}
                 </Card>
               </Card.Body>
             </Card>
