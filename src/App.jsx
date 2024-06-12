@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PrivateRouter from "./HOC/PrivateRouter";
 import Home from "./pages/Home/Home";
+import CourseDetail from "./components/Courses/CourseDetail";
 import Login from "./pages/Login/Login";
 import NotFoundPage from "./components/NotFoudPage/NotFoundPage";
 import Teacher from "./pages/Teacher/Teacher";
@@ -13,6 +14,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/course/:id" element={<CourseDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route

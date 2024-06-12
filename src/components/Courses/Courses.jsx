@@ -2,6 +2,7 @@ import { useAllCoursesQuery } from "./../../api/coursesApi";
 import { useState } from "react";
 import { Card, CardGroup, Col, Container, Row } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import Button from "./../Button/Button";
 import s from "./Courses.module.scss";
 import { loadStripe } from "@stripe/stripe-js";
@@ -10,6 +11,12 @@ function Courses() {
   const { data, isLoading } = useAllCoursesQuery();
   const [showModal, setShowModal] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleCardClick = (courseId) => {
+    navigate(`/course/${courseId}`);
+  };
 
   const handleBookClick = (course) => {
     setSelectedCourse(course);
@@ -33,7 +40,6 @@ function Courses() {
 
     const apiUrl = "http://localhost:8089/api/students/schedule-course";
 
-    // const response = await fetch(`${apiUrl}/create-checkout-session`, {
     const response = await fetch(apiUrl, {
       method: "POST",
       headers,
@@ -73,7 +79,10 @@ function Courses() {
                   ))
                 : data.courses.map((lesson, index) => (
                     <Col md={3} sm={6} key={index}>
-                      <Card style={{ margin: "10px" }}>
+                      <Card
+                        style={{ margin: "10px" }}
+                        onClick={() => handleCardClick(lesson._id)}
+                      >
                         <Card.Title style={{ padding: " 10px" }}>
                           {lesson.createdAt.slice(11, 16)} -
                           {lesson.updatedAt.slice(11, 16)}
@@ -91,7 +100,10 @@ function Courses() {
                             {lesson.title}
                             <Button
                               appearance="white"
-                              onClick={() => handleBookClick(lesson)}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleBookClick(lesson);
+                              }}
                             >
                               Book
                             </Button>
