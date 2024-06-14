@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBasketShopping } from "@fortawesome/free-solid-svg-icons";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 import { faPersonChalkboard } from "@fortawesome/free-solid-svg-icons";
 import Button from "./../Button/Button";
@@ -46,12 +45,6 @@ function Headers() {
                   </>
                 ) : (
                   <>
-                    <li className={s.basket}>
-                      <FontAwesomeIcon icon={faBasketShopping} />
-                      <div className={s.basketCount}>
-                        <p>0</p>
-                      </div>
-                    </li>
                     <li className={s.singInButton}>
                       <Button appearance="pink" href="/login">
                         Sign In
