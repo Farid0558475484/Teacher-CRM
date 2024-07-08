@@ -1,7 +1,14 @@
+import { useCourseDetailsQuery } from "./../../api/coursesApi";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import s from "./CourseDetail.module.scss";
 
 function CourseDetail() {
+  const { data: courseDetails } = useCourseDetailsQuery(
+    "6593cadfa2a1bde10a743fe9"
+    // courseId
+  );
+  console.log(courseDetails);
+
   const data = {
     id: "65ca0e16811200ec7d12430d",
     title: "CFA lv 1 - Economics (Eng)",
@@ -37,39 +44,43 @@ function CourseDetail() {
         <Col md={4}>
           <div className={s.sidebar}>
             <div className={s.imgBox}>
-              <img src={data.thumbnailUrl} alt="course_image" loading="lazy" />
+              <img
+                src={courseDetails?.course.img}
+                alt="course_image"
+                loading="lazy"
+              />
             </div>
             <div className={s.shortInfo}>
-              <div className={s.duration}>
-                <p>{(data.timescale / 3600).toFixed(2)}</p>
-                <p>SAAT</p>
-              </div>
+              
               <div className={s.divider}></div>
               <div className={s.level}>
-                <p>Beginner</p>
-                <p>Seviyye</p>
+                <p> duration:{courseDetails?.course.duration}</p>
               </div>
               <div className={s.divider}></div>
               <div className={s.studentCount}>
-                <p>{data.viewCount}</p>
-                <p>Telebe</p>
+                <p>category:{courseDetails.course.category}</p>
               </div>
               <div className={s.divider}></div>
               <div className={s.lang}>
-                <p>{data.lang}</p>
-                <p>Dil</p>
+                <p>price :{courseDetails?.course.price}</p>
               </div>
             </div>
             <div className="content">
               <h4>Dersler</h4>
               <ul>
-                {data.learn.map((item, index) => (
+                {courseDetails?.course.lesson?.map((item, index) => (
                   <li key={index}>
-                    <h3>
-                      {index + 1}.{item}
-                    </h3>
+                    <h3>salam title:{item.title}</h3>
+                    <p>status:{item.status}</p>
                   </li>
                 ))}
+                {/* <li key={index}>
+                    <h3>
+                      title:{index + 1}.{item.title}
+                    </h3>
+                    <p>status:{item.status}</p>
+                  </li>
+                ))} */}
               </ul>
             </div>
           </div>
@@ -78,16 +89,16 @@ function CourseDetail() {
           <div className={s.courseHero}>
             <div className={s.bg}>
               <div className={s.courseTitle}>
-                <h3>{data.title}</h3>
+                <h3>{courseDetails?.course?.title || "No course Title"}</h3>
               </div>
               <div className={s.imgWrapper}>
-                <img src={data.img} />
+                <img src={courseDetails?.course.img} />
               </div>
             </div>
             <div className={s.heroContent}>
               <div className={s.instructor}>
-                <h1>{data.instructor.name} </h1>
                 <h3>Təlimçi</h3>
+                <h1>{courseDetails?.course.description} </h1>
               </div>
               <div className={s.rateCourse}>
                 <div className={s.stars}>

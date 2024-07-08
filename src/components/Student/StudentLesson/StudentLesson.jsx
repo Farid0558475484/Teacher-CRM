@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { Col, Modal, Button } from "react-bootstrap";
 import s from "./StudentLesson.module.scss";
+import { useStudentAllLessonsQuery } from "./../../../api/coursesApi";
 
 function StudentLesson() {
+  const { data } = useStudentAllLessonsQuery();
+  console.log("data:", data);
+
   const [showModal, setShowModal] = useState(false);
   const [meetingUrl, setMeetingUrl] = useState("");
 
@@ -50,19 +54,36 @@ function StudentLesson() {
   return (
     <section>
       <div className={s.lessons}>
-        <h2> Lessons</h2>
-        <p className={s.lessonTitle}>Upcoming lesson</p>
-        <div className={s.lessonsList}>
-          <Col md={8}>
-            <p>16 September</p>
-            <p>17:00</p>
-            <p>English</p>
-          </Col>
-          <Col md={4}>
-            <div className={s.cad}>
-              <button onClick={handleAttendLesson}>Enter Classroom</button>
-            </div>
-          </Col>
+        <div className={s.allLessons}>
+          <h2> All -Lessons</h2>
+          <div className={s.lessonsList}>
+            salam
+            {data?.lessons.map((lesson) => (
+              <Col md={8} key={lesson._id}>
+                <p>{lesson?.title}</p>
+                <p>{lesson?.date}</p>
+                <p>{lesson?.duration}</p>
+                <p>{lesson?.status}</p>
+                <p>{lesson?.videoLink}</p>
+              </Col>
+            ))}
+          </div>
+        </div>
+        <div className={s.upcomingLessons}>
+          <h2> Upcoming -Lessons</h2>
+          <p className={s.lessonTitle}>Upcoming lesson</p>
+          <div className={s.lessonsList}>
+            <Col md={8}>
+              <p>16 September</p>
+              <p>17:00</p>
+              <p>English</p>
+            </Col>
+            <Col md={4}>
+              <div className={s.cad}>
+                <button onClick={handleAttendLesson}>Enter Classroom</button>
+              </div>
+            </Col>
+          </div>
         </div>
       </div>
       <Modal show={showModal} onHide={handleCloseModal}>

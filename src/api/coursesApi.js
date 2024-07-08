@@ -30,6 +30,21 @@ export const coursesApi = baseQuery.injectEndpoints({
       method: "POST",
       providesTags: ["Courses"],
     }),
+    studentAllLessons: builder.query({
+      query: () => ({
+        url: `/api/students/lessons`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+    }),
+    courseDetails: builder.query({
+      query: (id) => `/api/courses/${id}/details`,
+      headers: {
+        Accept: "application/json",
+      },
+      providesTags: ["Courses"],
+    }),
   }),
   overrideExisting: false,
 });
@@ -38,4 +53,6 @@ export const {
   useInstructorAllCoursesQuery,
   useCreateCourseMutation,
   useAllCoursesQuery,
+  useStudentAllLessonsQuery,
+  useCourseDetailsQuery,
 } = coursesApi;
