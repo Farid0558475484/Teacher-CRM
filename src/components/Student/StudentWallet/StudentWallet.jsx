@@ -26,6 +26,8 @@ function StudentWallet() {
     }
   };
 
+  console.log("inputValue", inputValue);
+
   return (
     <>
       <section className={s.studentWallet}>

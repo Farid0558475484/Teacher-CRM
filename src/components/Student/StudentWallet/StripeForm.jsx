@@ -33,14 +33,18 @@ function StripeForm({ inputValue }) {
         setClientSecret(data.payment.clientSecret);
         setPaymentId(data.payment._id);
       })
+
       .catch((error) => {
         console.error("Error creating payment intent:", error);
       });
   }, [inputValue]);
 
+  console.log("clientSecret", clientSecret);
+  console.log("paymentId", paymentId);
+
   const appearance = {
-    theme: 'night',
-    labels: 'floating'
+    theme: "night",
+    labels: "floating",
   };
   const options = {
     clientSecret,

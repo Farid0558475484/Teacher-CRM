@@ -8,7 +8,7 @@ import s from "./Courses.module.scss";
 import { loadStripe } from "@stripe/stripe-js";
 
 function Courses() {
-  const { data, isLoading } = useAllCoursesQuery();
+  const { data, isLoading} = useAllCoursesQuery();
   const [showModal, setShowModal] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
 

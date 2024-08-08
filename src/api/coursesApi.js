@@ -28,7 +28,7 @@ export const coursesApi = baseQuery.injectEndpoints({
     allCourses: builder.query({
       query: () => `/api/courses/all`,
       method: "POST",
-      providesTags: ["Courses"],
+      invalidatesTags: ["Courses"],
     }),
     studentAllLessons: builder.query({
       query: () => ({
@@ -36,6 +36,7 @@ export const coursesApi = baseQuery.injectEndpoints({
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        providesTags: ["Courses"],
       }),
     }),
     courseDetails: builder.query({
