@@ -77,7 +77,7 @@ function Courses() {
                       </Card>
                     </Col>
                   ))
-                : data.courses.map((lesson, index) => (
+                : data?.courses.map((lesson, index) => (
                     <Col md={3} sm={6} key={index}>
                       <Card
                         style={{ margin: "10px" }}
@@ -97,7 +97,7 @@ function Courses() {
                         </div>
                         <Card.Body className={s.cardBody}>
                           <Card.Text className={s.cardDesc}>
-                            {lesson.title}
+                            {lesson?.title}
                             <Button
                               appearance="white"
                               onClick={(e) => {

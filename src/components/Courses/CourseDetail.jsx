@@ -51,14 +51,13 @@ function CourseDetail() {
               />
             </div>
             <div className={s.shortInfo}>
-              
               <div className={s.divider}></div>
               <div className={s.level}>
                 <p> duration:{courseDetails?.course.duration}</p>
               </div>
               <div className={s.divider}></div>
               <div className={s.studentCount}>
-                <p>category:{courseDetails.course.category}</p>
+                <p>category:{courseDetails?.course.category}</p>
               </div>
               <div className={s.divider}></div>
               <div className={s.lang}>
@@ -72,8 +71,12 @@ function CourseDetail() {
                   <li key={index}>
                     <h3>salam title:{item.title}</h3>
                     <p>status:{item.status}</p>
+                    <input type="checkbox" />
                   </li>
                 ))}
+              <button className={s.buyBtn}>
+                  Buy
+                </button>
                 {/* <li key={index}>
                     <h3>
                       title:{index + 1}.{item.title}

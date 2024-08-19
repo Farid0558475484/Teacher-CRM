@@ -5,6 +5,7 @@ import s from "./UserInfo.module.scss";
 
 function UserInfo() {
   const { data, isLoading } = useCurrentUserQuery();
+  console.log("userData-data",data?.userProfile);
 
   const teacherInfo = [
     { label: "English Teacher", value: "" },
