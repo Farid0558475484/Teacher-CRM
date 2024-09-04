@@ -31,22 +31,20 @@
       color: #db3580;
       font-size: 30px;
     }
-    // .loginButton {
-    //   background-color: #db3580;
-    //   border: none;
-    //   padding: 10px 20px;
-    //   border-radius: 10px;
-    //   font-size: 20px;
-    //   cursor: pointer;
-    //   color: #fff;
-    //   text-decoration: none;
-    // }
   }
 
   .title {
     h1 {
       color: #db3580;
       border-bottom: 5px solid #db3580;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .title {
+      h1 {
+        font-size: 18px;
+      }
     }
   }
 }

@@ -1,14 +1,14 @@
 import { useAllCoursesQuery } from "./../../api/coursesApi";
 import { useState } from "react";
-import { Card, CardGroup, Col, Container, Row } from "react-bootstrap";
+import { Card, CardGroup, Col } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Button from "./../Button/Button";
-import s from "./Courses.module.scss";
 import { loadStripe } from "@stripe/stripe-js";
+import "./Courses.scss";
 
 function Courses() {
-  const { data, isLoading} = useAllCoursesQuery();
+  const { data, isLoading } = useAllCoursesQuery();
   const [showModal, setShowModal] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
 
@@ -58,81 +58,68 @@ function Courses() {
   };
 
   return (
-    <section>
-      <Container>
-        <Row>
-          <div className={s.cards}>
-            <CardGroup>
-              {isLoading || !data
-                ? Array.from({ length: 8 }).map((_, index) => (
-                    <Col md={3} sm={6} key={index}>
-                      <Card style={{ margin: "10px" }}>
-                        <Card.Title style={{ padding: " 10px" }}>
-                          Loading...
-                        </Card.Title>
-                        <Card.Img
-                          variant="top"
-                          src={"https://picsum.photos/200/200"}
-                        />
-                      </Card>
-                    </Col>
-                  ))
-                : data?.courses.map((lesson, index) => (
-                    <Col md={3} sm={6} key={index}>
-                      <Card
-                        style={{ margin: "10px" }}
-                        onClick={() => handleCardClick(lesson._id)}
+    <section className="courses">
+      <div className="container">
+        <div className="row">
+          {data?.courses.map((lesson, index) => (
+            <div className="col-md-3 col-6 pt-3" key={index}>
+              <div className="card" onClick={() => handleCardClick(lesson._id)}>
+                <div className="card-title p-1 text-center">
+                  {lesson?.title}
+                </div>
+                <div className="card-img">
+                  <img
+                    variant="top"
+                    className="img-fluid"
+                    src={lesson?.img || "https://picsum.photos/200/200"}
+                  />
+                </div>
+                <div className="card-body">
+                  <p className="price">{lesson.price} - Azn</p>
+                  <p className="description">{lesson.description}</p>
+                  <div className="content">
+                    <div className="lessonTime">
+                      <div className="card-text text-center">
+                        {lesson.createdAt.slice(11, 16)} -
+                        {lesson.updatedAt.slice(11, 16)}
+                      </div>
+                    </div>
+                    <div className="buttonBook">
+                      <button
+                        className="btn "
+                        appearance="white"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleBookClick(lesson);
+                        }}
                       >
-                        <Card.Title style={{ padding: " 10px" }}>
-                          {lesson.createdAt.slice(11, 16)} -
-                          {lesson.updatedAt.slice(11, 16)}
-                        </Card.Title>
-                        <div className={s.cardImage}>
-                          <Card.Img
-                            variant="top"
-                            src={lesson.img || "https://picsum.photos/200/200"}
-                          />
-                          <p className={s.lessonType}>{lesson.price} - Azn</p>
-                          <p className={s.lessonName}>{lesson.description}</p>
-                        </div>
-                        <Card.Body className={s.cardBody}>
-                          <Card.Text className={s.cardDesc}>
-                            {lesson?.title}
-                            <Button
-                              appearance="white"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleBookClick(lesson);
-                              }}
-                            >
-                              Book
-                            </Button>
-                          </Card.Text>
-                        </Card.Body>
-                      </Card>
-                    </Col>
-                  ))}
-            </CardGroup>
-          </div>
+                        Book
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
 
-          <Modal show={showModal} onHide={() => setShowModal(false)}>
-            <Modal.Header closeButton>
-              <Modal.Title>Подтверждение покупки</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              {selectedCourse && (
-                <>
-                  <p>Вы хотите купить курс `{selectedCourse.title}`?</p>
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Подтверждение покупки</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {selectedCourse && (
+              <>
+                <p>Вы хотите купить курс `{selectedCourse.title}`?</p>
 
-                  <Button appearance="pink" onClick={makePayment}>
-                    Agree
-                  </Button>
-                </>
-              )}
-            </Modal.Body>
-          </Modal>
-        </Row>
-      </Container>
+                <Button appearance="pink" onClick={makePayment}>
+                  Agree
+                </Button>
+              </>
+            )}
+          </Modal.Body>
+        </Modal>
+      </div>
     </section>
   );
 }

@@ -1,0 +1,60 @@
+.courses {
+  .price {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    color: white;
+    background-color: #db3580;
+    padding: 3px 10px;
+    border-radius: 10px;
+  }
+
+  .description {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    color: #db3580;
+    background-color: rgb(255, 255, 255);
+    padding: 3px 10px;
+    border-radius: 10px;
+  }
+  .card {
+    min-height: 100%;
+  }
+  .buttonBook {
+    button {
+      background-color: #db3580;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.3s;
+      &:hover {
+        background-color: #db3580;
+        color: white;
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 768px) {
+    .price {
+      font-size: 12px;
+      right: 5px;
+    }
+
+    .description {
+      font-size: 12px;
+      left: 5px;
+    }
+  }
+}

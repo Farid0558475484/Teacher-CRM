@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { Container, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 import { faPersonChalkboard } from "@fortawesome/free-solid-svg-icons";
@@ -13,8 +12,8 @@ function Headers() {
   return (
     <header>
       <section>
-        <Container>
-          <Row>
+        <div className="container">
+          <div className="row">
             <div className={s.header}>
               <div className={s.title}>
                 <h1>Morooq - Course</h1>
@@ -59,8 +58,8 @@ function Headers() {
                 )}
               </div>
             </div>
-          </Row>
-        </Container>
+          </div>
+        </div>
       </section>
     </header>
   );

@@ -34,11 +34,13 @@ function StripeForm({ inputValue }) {
         setPaymentId(data.payment._id);
       })
 
+
+
       .catch((error) => {
         console.error("Error creating payment intent:", error);
       });
   }, [inputValue]);
-
+  console.log("clientSecret", clientSecret);
   console.log("clientSecret", clientSecret);
   console.log("paymentId", paymentId);
 
