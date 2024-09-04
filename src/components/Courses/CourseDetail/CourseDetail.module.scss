@@ -1,12 +1,13 @@
 .courseHero {
   margin-bottom: 40px;
+
   .bg {
     position: relative;
     width: 100%;
     height: 300px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-radius: 10px 10px 0 0;
     background: #db3580;
+
     .courseTitle {
       text-align: center;
       position: relative;
@@ -19,7 +20,6 @@
 
     .imgWrapper {
       position: absolute;
-      // z-index: 999;
       bottom: -52%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -29,15 +29,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      -webkit-clip-path: polygon(
-        50% 0,
-        90% 20%,
-        100% 60%,
-        75% 100%,
-        25% 100%,
-        0 60%,
-        10% 20%
-      );
       clip-path: polygon(
         50% 0,
         90% 20%,
@@ -51,26 +42,8 @@
       img {
         width: 150px;
         height: 150px;
-        -o-object-fit: contain;
         object-fit: contain;
-        -webkit-clip-path: polygon(
-          50% 0,
-          90% 20%,
-          100% 60%,
-          75% 100%,
-          25% 100%,
-          0 60%,
-          10% 20%
-        );
-        clip-path: polygon(
-          50% 0,
-          90% 20%,
-          100% 60%,
-          75% 100%,
-          25% 100%,
-          0 60%,
-          10% 20%
-        );
+        clip-path: inherit;
       }
     }
   }
@@ -78,23 +51,16 @@
   .heroContent {
     background: #fff;
     padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-
-    .instructor {
-      order: 2;
-    }
-    .rateCourse {
-      order: 1;
-    }
-    .actionBtns {
-      order: 3;
-    }
 
     .rateCourse {
       margin-top: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
+
       .stars {
         margin-bottom: 15px;
 
@@ -105,12 +71,15 @@
         }
       }
     }
+
     .instructor {
       margin-top: 20px;
       text-align: center;
+
       h1 {
         font-size: 2rem;
       }
+
       h3 {
         font-size: 1.3rem;
         color: #afb0c0;
@@ -118,55 +87,57 @@
         margin: 0;
       }
     }
+
     .actionBtns {
       margin-top: 20px;
       text-align: center;
 
-      .greyBtn {
-        cursor: pointer;
-        outline: none;
-        background: linear-gradient(0deg, #7b7b7b, #d8d8d8);
-        color: #fff;
-        padding: 10px 20px;
-        border-radius: 8px;
-        font-size: 14px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        margin: 10px;
-      }
-
+      .greyBtn,
       .blueBtn {
         cursor: pointer;
         outline: none;
-        background: #db3580;
-        color: #fff;
         padding: 10px 20px;
         border-radius: 8px;
         font-size: 14px;
         font-weight: 600;
         letter-spacing: 1px;
         margin: 10px;
+        color: #fff;
+      }
+
+      .greyBtn {
+        background: linear-gradient(0deg, #7b7b7b, #d8d8d8);
+      }
+
+      .blueBtn {
+        background: #db3580;
       }
     }
   }
 
   @media only screen and (max-width: 600px) {
-    .courseHero {
-      .bg {
-        .courseTitle {
-          font-size: 30px;
-        }
-      }
-      .heroContent {
-        .instructor {
-          h1 {
-            font-size: 1.5rem;
-          }
-          h3 {
-            font-size: 1rem;
-          }
-        }
-      }
+    .bg .courseTitle {
+      font-size: 30px;
+    }
+
+    .heroContent .instructor h1 {
+      font-size: 1.5rem;
+    }
+
+    .heroContent .instructor h3 {
+      font-size: 1rem;
+    }
+
+    .instructor {
+      order: 1;
+    }
+
+    .rateCourse {
+      order: 2;
+    }
+
+    .actionBtns {
+      order: 3;
     }
   }
 
@@ -177,98 +148,85 @@
       align-items: center;
     }
   }
-
-  @media only screen and (max-width: 600px) {
-    .courseHero {
-      .heroContent {
-        .instructor {
-          order: 1;
-        }
-        .rateCourse {
-          order: 2;
-        }
-        .actionBtns {
-          order: 3;
-        }
-      }
-    }
-  }
 }
+
 .sidebar {
   margin-top: 20px;
   border-radius: 20px;
-  min-width: 100%;
-  height: 90vh;
   padding: 10px;
   background: #fff;
-  overflow-y: scroll;
-  width: inherit;
+  overflow-y: auto;
+  width: 100%;
   z-index: 3;
+  height: 90vh;
+
   h4 {
     text-align: center;
   }
 
   .imgBox {
     text-align: center;
+
     img {
       width: 70%;
       border-radius: 5px;
       box-shadow: 0 0 10px gray;
     }
   }
+
   .shortInfo {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    text-align: center;
     padding: 20px 0 40px;
+    text-align: center;
+
     p {
       font-size: 0.9em;
+
       &:last-child {
         color: gray;
       }
     }
+
     .divider {
       height: 15px;
       width: 1px;
       background: silver;
     }
   }
+
   .sidebarVideos {
     padding-top: 30px;
+
     .active {
       background: #db3580;
       color: #fff;
     }
-    .moduleInfo {
+
+    .moduleInfo,
+    .videoInfo {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      p:last-child {
-        margin-left: 10px;
-        font-size: 0.8em;
-        font-weight: bold;
-        span {
-          font-weight: normal;
-        }
-      }
     }
+
+    .moduleInfo p:last-child,
+    .videoInfo a p:first-child {
+      font-size: 0.8em;
+      font-weight: bold;
+    }
+
     .videoInfo {
       padding: 5px 0;
-      display: flex;
-      justify-content: space-between;
+
       a {
         display: inline-flex;
         align-items: center;
+
         &:hover p:last-child {
           color: #db3580;
-        }
-        p:first-child {
-          text-align: center;
-          margin-right: 7px;
-          font-size: 0.8em;
-          font-weight: bold;
         }
       }
     }
@@ -277,13 +235,14 @@
   @media (max-width: 1050px) {
     .shortInfo {
       display: block;
-      text-align: unset;
+
       & > div {
         display: flex;
         width: 100%;
         justify-content: space-between;
         margin: 3px 0;
       }
+
       .divider {
         display: none;
       }
@@ -291,9 +250,7 @@
   }
 
   @media (max-width: 800px) {
-    .sidebar {
-      width: 100%;
-    }
+    width: 100%;
   }
 
   .videoInfoContentText,
@@ -311,9 +268,11 @@
   padding: 20px;
   background: #fff;
   border-radius: 20px;
+
   h4 {
     text-align: center;
   }
+
   p {
     margin-top: 20px;
     font-size: 0.9em;
@@ -372,7 +331,6 @@
       text-align: right;
     }
 
-    // Контейнер для чекбокса
     .checkboxContainer {
       display: flex;
       align-items: center;
@@ -380,7 +338,6 @@
       padding-left: 24px;
       cursor: pointer;
 
-      // Сам чекбокс
       .checkbox {
         position: absolute;
         opacity: 0;
@@ -389,7 +346,6 @@
         width: 0;
       }
 
-      // Стилизованный чекбокс
       .checkmark {
         position: absolute;
         top: 0;
@@ -400,14 +356,12 @@
         border-radius: 4px;
       }
 
-      // Стиль для активного состояния чекбокса
       .checkbox:checked ~ .checkmark {
         background-color: #007bff;
       }
     }
   }
 
-  // Стили для кнопки "Buy"
   .buyBtn {
     width: 100%;
     padding: 10px;
@@ -425,7 +379,6 @@
     }
   }
 
-  // Стили для секции с уроками
   .content {
     background-color: #f8f9fa;
     padding: 20px;
