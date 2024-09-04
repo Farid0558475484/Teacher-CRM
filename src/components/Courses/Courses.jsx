@@ -17,6 +17,7 @@ function Courses() {
   const handleCardClick = (courseId) => {
     navigate(`/course/${courseId}`);
   };
+  
 
   const handleBookClick = (course) => {
     setSelectedCourse(course);

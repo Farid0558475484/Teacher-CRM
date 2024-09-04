@@ -4,7 +4,7 @@ import "./App.css";
 import Loading from "./components/Loading/Loading";
 
 const Home = lazy(() => import("./pages/Home/Home"));
-const CourseDetail = lazy(() => import("./components/Courses/CourseDetail"));
+const CourseDetail = lazy(() => import("./components/Courses/CourseDetail/CourseDetail"));
 const Login = lazy(() => import("./pages/Login/Login"));
 const Register = lazy(() => import("./pages/Register/Register"));
 const NotFoundPage = lazy(() =>
@@ -20,7 +20,7 @@ function App() {
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/course/:id" element={<CourseDetail />} />
+          <Route path="/course/:courseId" element={<CourseDetail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route

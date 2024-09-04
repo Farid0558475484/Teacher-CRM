@@ -1,12 +1,11 @@
-import { useCourseDetailsQuery } from "./../../api/coursesApi";
+import { useParams } from "react-router-dom";
+import { useCourseDetailsQuery } from "../../../api/coursesApi";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import s from "./CourseDetail.module.scss";
 
 function CourseDetail() {
-  const { data: courseDetails } = useCourseDetailsQuery(
-    "6593cadfa2a1bde10a743fe9"
-    // courseId
-  );
+  const { courseId } = useParams();
+  const { data: courseDetails } = useCourseDetailsQuery(courseId);
   console.log(courseDetails);
 
   const data = {
@@ -74,9 +73,7 @@ function CourseDetail() {
                     <input type="checkbox" />
                   </li>
                 ))}
-              <button className={s.buyBtn}>
-                  Buy
-                </button>
+                <button className={s.buyBtn}>Buy</button>
                 {/* <li key={index}>
                     <h3>
                       title:{index + 1}.{item.title}
