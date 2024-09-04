@@ -321,8 +321,6 @@
   }
 }
 
-
-
 .buyBtn {
   cursor: pointer;
   outline: none;
@@ -335,4 +333,119 @@
   letter-spacing: 1px;
   margin: 10px;
   border: none;
+}
+
+.courseContent {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  .title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .lessonItem {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+
+    .lessonTitle {
+      font-size: 18px;
+      font-weight: 500;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .lessonStatus {
+      font-size: 14px;
+      color: #666;
+      margin: 0;
+      padding-right: 10px;
+      text-align: right;
+    }
+
+    // Контейнер для чекбокса
+    .checkboxContainer {
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-left: 24px;
+      cursor: pointer;
+
+      // Сам чекбокс
+      .checkbox {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+
+      // Стилизованный чекбокс
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: #ccc;
+        border-radius: 4px;
+      }
+
+      // Стиль для активного состояния чекбокса
+      .checkbox:checked ~ .checkmark {
+        background-color: #007bff;
+      }
+    }
+  }
+
+  // Стили для кнопки "Buy"
+  .buyBtn {
+    width: 100%;
+    padding: 10px;
+    background-color: #d63384;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #c2185b;
+    }
+  }
+
+  // Стили для секции с уроками
+  .content {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+
+    h4 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin-bottom: 10px;
+      }
+    }
+  }
 }

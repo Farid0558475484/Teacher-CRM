@@ -63,25 +63,21 @@ function CourseDetail() {
                 <p>price :{courseDetails?.course.price}</p>
               </div>
             </div>
-            <div className="content">
-              <h4>Dersler</h4>
-              <ul>
+            <div className={s.courseContent}>
+              <h4 className={s.title}>Dərslər</h4>
+              <ul className={s.lessonList}>
                 {courseDetails?.course.lesson?.map((item, index) => (
-                  <li key={index}>
-                    <h3>salam title:{item.title}</h3>
-                    <p>status:{item.status}</p>
-                    <input type="checkbox" />
+                  <li key={index} className={s.lessonItem}>
+                    <h5 className={s.lessonTitle}>{item.title}</h5>
+                    <p className={s.lessonStatus}>Status: {item.status}</p>
+                    <label className={s.checkboxContainer}>
+                      <input type="checkbox" className={s.checkbox} />
+                      <span className={s.checkmark}></span>
+                    </label>
                   </li>
                 ))}
-                <button className={s.buyBtn}>Buy</button>
-                {/* <li key={index}>
-                    <h3>
-                      title:{index + 1}.{item.title}
-                    </h3>
-                    <p>status:{item.status}</p>
-                  </li>
-                ))} */}
               </ul>
+              <button className={s.buyBtn}>Buy</button>
             </div>
           </div>
         </Col>
