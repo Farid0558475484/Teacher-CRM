@@ -1,13 +1,13 @@
 import { useAllCoursesQuery } from "./../../api/coursesApi";
 import { useState } from "react";
-import { Card, CardGroup, Col } from "react-bootstrap";
+import { memo } from "react";
 import { Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Button from "./../Button/Button";
 import { loadStripe } from "@stripe/stripe-js";
 import "./Courses.scss";
 
-function Courses() {
+const Courses = memo(() => {
   const { data, isLoading } = useAllCoursesQuery();
   const [showModal, setShowModal] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
@@ -17,7 +17,6 @@ function Courses() {
   const handleCardClick = (courseId) => {
     navigate(`/course/${courseId}`);
   };
-  
 
   const handleBookClick = (course) => {
     setSelectedCourse(course);
@@ -123,6 +122,6 @@ function Courses() {
       </div>
     </section>
   );
-}
+});
 
 export default Courses;

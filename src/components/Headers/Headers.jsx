@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
@@ -5,7 +6,7 @@ import { faPersonChalkboard } from "@fortawesome/free-solid-svg-icons";
 import Button from "./../Button/Button";
 import s from "./Headers.module.scss";
 
-function Headers() {
+const Headers = memo(() => {
   const role = localStorage.getItem("role");
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
@@ -63,6 +64,6 @@ function Headers() {
       </section>
     </header>
   );
-}
+});
 
 export default Headers;
