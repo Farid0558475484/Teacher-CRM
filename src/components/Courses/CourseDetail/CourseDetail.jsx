@@ -115,7 +115,7 @@ function CourseDetail() {
           <ul>
             {selectedCourses.map((course, index) => (
               <li key={index}>
-                {course.title} - {course?.price} AZN
+                {course.title} - {course?.creditsSpent} AZN
               </li>
             ))}
           </ul>

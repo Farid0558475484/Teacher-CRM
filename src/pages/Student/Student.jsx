@@ -1,8 +1,16 @@
 import { Routes, Route } from "react-router-dom";
-import StudentHome from "../../components/Student/StudentHome/StudentHome";
+import { lazy } from "react";
 import Header from "../../components/Student/Header/Header";
-import StudentWallet from "./../../components/Student/StudentWallet/StudentWallet";
-import PaymentStatus from "./../../components/Student/StudentWallet/PaymentStatus"
+
+const StudentHome = lazy(() =>
+  import("./../../components/Student/StudentHome/StudentHome")
+);
+const StudentWallet = lazy(() =>
+  import("./../../components/Student/StudentWallet/StudentWallet")
+);
+const PaymentStatus = lazy(() =>
+  import("./../../components/Student/StudentWallet/PaymentStatus")
+);
 
 function Student() {
   return (
@@ -15,7 +23,6 @@ function Student() {
           <Route path="/:userId/*" element={<StudentHome />} />
           <Route path="/student-wallet" element={<StudentWallet />} />
           <Route path="/payment-status" element={<PaymentStatus />} />
-
         </Routes>
       </main>
     </>

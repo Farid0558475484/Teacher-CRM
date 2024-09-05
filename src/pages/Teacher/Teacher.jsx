@@ -1,15 +1,18 @@
 import { Routes, Route } from "react-router-dom";
+import { lazy } from "react";
 import Header from "./../../components/Teacher/Header/Header";
-import Schedule from "./../../components/Teacher/Schedule/Schedule";
-import Lessons from "./../../components/Teacher/Lessons/Lessons";
-import Students from "./../../components/Teacher/Students/Students";
-import Wallet from "./../../components/Teacher/Wallet/Wallet";
-import Profile from "./../../components/Teacher/Profile/Profile";
-import TeacherSettings from "./../../components/Teacher/TeacherSettings/TeacherSettings";
-import Support from "./../../components/Teacher/Support/Support";
-import Messages from "./../../components/Teacher/Messages/Messages";
-import AccountSettings from "./../../components/Teacher/AccountSettings/AccountSettings";
-import TeacherHome from "./../../components/Teacher/TeacherHome/TeacherHome";
+
+const Schedule = lazy(() => import("./../../components/Teacher/Schedule/Schedule"));
+const Lessons = lazy(() => import("./../../components/Teacher/Lessons/Lessons"));
+const Students = lazy(() => import("./../../components/Teacher/Students/Students"));
+const Wallet = lazy(() => import("./../../components/Teacher/Wallet/Wallet"));
+const Profile = lazy(() => import("./../../components/Teacher/Profile/Profile"));
+const TeacherSettings = lazy(() => import("./../../components/Teacher/TeacherSettings/TeacherSettings"));
+const Support = lazy(() => import("./../../components/Teacher/Support/Support"));
+const Messages = lazy(() => import("./../../components/Teacher/Messages/Messages"));
+const AccountSettings = lazy(() => import("./../../components/Teacher/AccountSettings/AccountSettings"));
+const TeacherHome = lazy(() => import("./../../components/Teacher/TeacherHome/TeacherHome"));
+
 
 function Teacher() {
   return (

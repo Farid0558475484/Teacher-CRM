@@ -1,5 +1,5 @@
-import { Container, Row } from "react-bootstrap";
-import UserInfo from "../../UserInfo/UserInfo";
+import { Container, Row } from "react-bootstrap"
+import StudentInfo from "./../StudentInfo/StudentInfo";
 import Resume from "./../../Teacher/Resume/Resume";
 import StudentLesson from "./../StudentLesson/StudentLesson";
 
@@ -8,7 +8,7 @@ function StudentHome() {
     <section>
       <Container>
         <Row>
-          <UserInfo />
+          <StudentInfo />
           <StudentLesson />
           <Resume />
         </Row>

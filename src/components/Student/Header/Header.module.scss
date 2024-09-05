@@ -11,4 +11,9 @@ header {
       height: 40px;
     }
   }
+  ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
 }

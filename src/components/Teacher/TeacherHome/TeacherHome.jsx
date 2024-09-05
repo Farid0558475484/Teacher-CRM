@@ -1,17 +1,18 @@
-import { Container, Row } from "react-bootstrap";
-import UserInfo from "../../UserInfo/UserInfo";
-import LessonList from "./../Lessons/LessonList/LessonList";
-import Resume from "../Resume/Resume";
+import { lazy } from "react";
+
+const TeacherInfo = lazy(() => import("./../TeacherInfo/TeacherInfo"));
+const LessonList = lazy(() => import("./../Lessons/LessonList/LessonList"));
+const Resume = lazy(() => import("./../Resume/Resume"));
 
 function TeacherHome() {
   return (
-    <Container>
-      <Row>
-        <UserInfo />
+    <div className="container">
+      <div className="row">
+        <TeacherInfo />
         <LessonList />
         <Resume />
-      </Row>
-    </Container>
+      </div>
+    </div>
   );
 }
 

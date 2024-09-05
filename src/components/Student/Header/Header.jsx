@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { Offcanvas } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
 import { useCurrentUserQuery } from "./../../../api/usersApi";
 import Skeleton from "react-loading-skeleton";
 import Sidebar from "./../Sidebar/Sidebar";
-import logo from "./../../../assets/img/morooq.jpeg";
 import s from "./Header.module.scss";
 
 function Header() {
@@ -20,17 +18,10 @@ function Header() {
   return (
     <header className={s.header}>
       <section className={s.teacherHeader}>
-        <Container>
-          <Row className={s.row}>
-            <Col md={4}>
-              <div className={s.logo}>
-                <NavLink to={`/student/${userId}}`}>
-                  <img src={logo} alt="logo" />
-                </NavLink>
-              </div>
-            </Col>
-            <Col md={8}>
-              <div>
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+
                 <nav>
                   <ul className={s.ul}>
                     <li>
@@ -73,10 +64,10 @@ function Header() {
                     </li>
                   </ul>
                 </nav>
-              </div>
-            </Col>
-          </Row>
-        </Container>
+  
+            </div>
+          </div>
+        </div>
       </section>
 
       <Offcanvas
