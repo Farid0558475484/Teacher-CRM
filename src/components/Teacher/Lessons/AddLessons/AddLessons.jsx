@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { memo } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
+import { useAddLessonMutation } from "./../../../../api/coursesApi"; // Импорт мутации
 
-function AddLessons({ courseId }) {
+const AddLessons = memo(({ courseId }) => {
   const [formData, setFormData] = useState({
     title: "",
     creditsSpent: 0,
@@ -10,6 +12,7 @@ function AddLessons({ courseId }) {
   });
 
   const [showModal, setShowModal] = useState(false);
+  const [addLesson, { isLoading, isError }] = useAddLessonMutation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,25 +24,9 @@ function AddLessons({ courseId }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Sending data to server:", formData);
     try {
-      const response = await fetch(
-        `http://localhost:8089/api/courses/lesson/${courseId}`,
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to create course");
-      }
-
-      alert("Course created successfully!");
+      await addLesson({ courseId, lessonData: formData }).unwrap();
+      alert("Lesson added successfully!");
       setFormData({
         title: "",
         creditsSpent: 0,
@@ -48,8 +35,8 @@ function AddLessons({ courseId }) {
       });
       handleCloseModal();
     } catch (error) {
-      console.error("Error creating course:", error);
-      alert("Failed to create course. Please try again.");
+      console.error("Error adding lesson:", error);
+      alert("Failed to add lesson. Please try again.");
     }
   };
 
@@ -135,15 +122,20 @@ function AddLessons({ courseId }) {
               <Button variant="secondary" onClick={handleCloseModal}>
                 Close
               </Button>
-              <Button variant="primary" type="submit">
-                Add
+              <Button variant="primary" type="submit" disabled={isLoading}>
+                {isLoading ? "Adding..." : "Add"}
               </Button>
+              {isError && (
+                <p style={{ color: "red" }}>
+                  Error occurred while adding lesson.
+                </p>
+              )}
             </Modal.Footer>
           </Form>
         </Modal>
       </div>
     </>
   );
-}
+});
 
 export default AddLessons;

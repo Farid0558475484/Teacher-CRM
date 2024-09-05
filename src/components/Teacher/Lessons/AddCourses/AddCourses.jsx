@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Container, Row, Form, Button, Modal } from "react-bootstrap";
+import { memo } from "react";
 
-function AddCourses() {
+const AddCourses = memo(() => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -176,6 +177,6 @@ function AddCourses() {
       </Container>
     </section>
   );
-}
+});
 
 export default AddCourses;

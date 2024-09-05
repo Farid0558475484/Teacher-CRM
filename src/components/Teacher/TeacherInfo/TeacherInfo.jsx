@@ -1,8 +1,9 @@
 import { useCurrentUserQuery } from "./../../../api/usersApi";
+import React, { memo } from "react";
 import { Col } from "react-bootstrap";
 import s from "./TeacherInfo.module.scss";
 
-function TeacherInfo() {
+const TeacherInfo = memo(() => {
   const { data } = useCurrentUserQuery();
   console.log("userData-data", data?.userProfile);
 
@@ -52,6 +53,6 @@ function TeacherInfo() {
       </div>
     </section>
   );
-}
+});
 
 export default TeacherInfo;

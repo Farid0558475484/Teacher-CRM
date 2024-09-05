@@ -30,6 +30,7 @@ export const coursesApi = baseQuery.injectEndpoints({
       method: "POST",
       invalidatesTags: ["Courses"],
     }),
+
     studentAllLessons: builder.query({
       query: () => ({
         url: `/api/students/lessons`,
@@ -39,12 +40,36 @@ export const coursesApi = baseQuery.injectEndpoints({
         providesTags: ["Courses"],
       }),
     }),
+
     courseDetails: builder.query({
       query: (id) => `/api/courses/${id}/details`,
       headers: {
         Accept: "application/json",
       },
       providesTags: ["Courses"],
+    }),
+
+    addLesson: builder.mutation({
+      query: ({ courseId, lessonData }) => ({
+        url: `/api/courses/lesson/${courseId}`,
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: lessonData,
+      }),
+      invalidatesTags: ["Courses"],
+    }),
+    deleteLesson: builder.mutation({
+      query: ({ courseId, lessonId }) => ({
+        url: `/api/courses/lesson/${courseId}/${lessonId}`,
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      invalidatesTags: ["Courses"],
     }),
   }),
   overrideExisting: false,
@@ -56,4 +81,6 @@ export const {
   useAllCoursesQuery,
   useStudentAllLessonsQuery,
   useCourseDetailsQuery,
+  useAddLessonMutation,
+  useDeleteLessonMutation,
 } = coursesApi;
