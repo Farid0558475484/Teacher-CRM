@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useCurrentUserQuery } from "../../../api/usersApi";
+import { memo } from "react";
 import { NavLink } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import Skeleton from "react-loading-skeleton";
@@ -8,7 +9,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import { Offcanvas } from "react-bootstrap";
 import s from "./Header.module.scss";
 
-function Header() {
+const Header = memo(() => {
   const { data, isLoading } = useCurrentUserQuery();
   const [showSidebar, setShowSidebar] = useState(false);
 
@@ -94,6 +95,6 @@ function Header() {
       </Offcanvas>
     </header>
   );
-}
+});
 
 export default Header;

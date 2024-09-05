@@ -2,6 +2,7 @@ import { baseQuery } from "./api";
 const token = localStorage.getItem("token");
 
 export const usersApi = baseQuery.injectEndpoints({
+  tagTypes: ["User"],
   endpoints: (builder) => ({
     userId: builder.query({
       query: (userId) => `/api/users/${userId}`,
