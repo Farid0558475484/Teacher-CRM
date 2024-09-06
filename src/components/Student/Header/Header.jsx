@@ -56,8 +56,8 @@ function Header() {
                           <Skeleton height={50} width={50} circle={50} />
                         ) : (
                           <img
-                            src={data?.userProfile?.avatarImageUrl}
-                            alt="Avatar"
+                            src="https://w7.pngwing.com/pngs/451/380/png-transparent-hamburger-button-computer-icons-menu-menu-rectangle-desktop-wallpaper-button-thumbnail.png"
+                            alt="burger-menu"
                           />
                         )}
                       </div>

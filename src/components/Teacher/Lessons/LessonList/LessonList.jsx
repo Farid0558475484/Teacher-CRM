@@ -5,17 +5,15 @@ import "react-loading-skeleton/dist/skeleton.css";
 import s from "./LessonList.module.scss";
 
 const LessonList = memo(({ AddLessons, AddCourses }) => {
-  const { data, isLoading } = useInstructorAllCoursesQuery();
+  const { data, isLoading, refetch } = useInstructorAllCoursesQuery();
   const [deleteLesson] = useDeleteLessonMutation();
 
   const handleDelete = async (courseId, lessonId) => {
     const confirmed = window.confirm("Are you sure you want to delete this lesson?");
     if (confirmed) {
       try {
-        const response = await deleteLesson({ courseId, lessonId }).unwrap();
-        if (response.success) {
-          alert("Lesson deleted successfully!");
-        }
+        await deleteLesson({ courseId, lessonId }).unwrap();
+        refetch(); // Перезапрашиваем данные после удаления
       } catch (error) {
         alert("Failed to delete the lesson. Please try again.");
       }
@@ -26,10 +24,11 @@ const LessonList = memo(({ AddLessons, AddCourses }) => {
     <section className={s.lessonSection}>
       <Container>
         <Row>
-          <div className={s.lessons} >
+          <div className={s.lessons}>
             <h2 className={s.title}>
               <div className={s.lessonHeader}>
-                <div>{`Courses`}</div> <>{AddCourses && <AddCourses />}</>
+                <div>{`Courses`}</div>
+                {AddCourses && <AddCourses />}
               </div>
             </h2>
             <div className={s.lessonsList}>
@@ -38,19 +37,13 @@ const LessonList = memo(({ AddLessons, AddCourses }) => {
                   <Card className={s.card}>
                     <Card.Body className={s.cardBody}>
                       <div className={s.leftContent}>
-                        <div>
-                          <Card.Title>Category: {course?.category}</Card.Title>
-                          <Card.Text>Course Name: {course?.title}</Card.Text>
-                          <Card.Text>Course Desc: {course?.description}</Card.Text>
-                        </div>
+                        <Card.Title>Category: {course?.category}</Card.Title>
+                        <Card.Text>Course Name: {course?.title}</Card.Text>
+                        <Card.Text>Course Desc: {course?.description}</Card.Text>
                       </div>
                       <div className={s.rightContent}>
-                        <Card.Text className={s.time}>
-                          Duration: {course?.duration} min
-                        </Card.Text>
-                        <Card.Text className={s.price}>
-                          USD {course?.creditsSpent}
-                        </Card.Text>
+                        <Card.Text className={s.time}>Duration: {course?.duration} min</Card.Text>
+                        <Card.Text className={s.price}>USD {course?.creditsSpent}</Card.Text>
                       </div>
                     </Card.Body>
                     <Card.Body>
@@ -59,9 +52,7 @@ const LessonList = memo(({ AddLessons, AddCourses }) => {
                           <Card.Body className={s.cardBody} key={lessonIndex}>
                             <Card.Title>Lesson: {lesson?.title}</Card.Title>
                             <Card.Text>Slug: {lesson?.slug}</Card.Text>
-                            <Card.Text>
-                              CreditsSpent: {lesson?.creditsSpent}
-                            </Card.Text>
+                            <Card.Text>CreditsSpent: {lesson?.creditsSpent}</Card.Text>
                             <Card.Text>Duration: {lesson?.duration}</Card.Text>
                             <button
                               className="btn btn-danger"

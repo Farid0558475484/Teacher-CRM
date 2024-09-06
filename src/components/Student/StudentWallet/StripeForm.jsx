@@ -1,3 +1,4 @@
+// StripeForm.js
 import { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Col } from "react-bootstrap";
@@ -11,57 +12,59 @@ function StripeForm({ inputValue }) {
   const [paymentId, setPaymentId] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:8089/api/payments/purchase-credits", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        studentId: "658fa367742cd725b24b184a",
-        amount: inputValue,
-        payment_method: "pm_card_visa",
-      }),
-    })
-      .then((res) => {
-        if (!res.ok) {
+    const createPaymentIntent = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:8089/api/payments/purchase-credits",
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              studentId: "658fa367742cd725b24b184a",
+              amount: inputValue,
+              payment_method: "pm_card_visa",
+            }),
+          }
+        );
+
+        if (!response.ok) {
           throw new Error("Failed to create payment intent");
         }
-        return res.json();
-      })
-      .then((data) => {
+
+        const data = await response.json();
         setClientSecret(data.payment.clientSecret);
         setPaymentId(data.payment._id);
-      })
-
-
-
-      .catch((error) => {
+      } catch (error) {
         console.error("Error creating payment intent:", error);
-      });
+      }
+    };
+
+    if (inputValue) {
+      createPaymentIntent();
+    }
   }, [inputValue]);
-  console.log("clientSecret", clientSecret);
-  console.log("clientSecret", clientSecret);
-  console.log("paymentId", paymentId);
 
   const appearance = {
     theme: "night",
     labels: "floating",
   };
+
   const options = {
     clientSecret,
     appearance,
   };
+
   return (
-    <>
-      <Col className="mt-4">
-        {clientSecret && (
-          <Elements options={options} stripe={stripePromise}>
-            <CheckoutForm paymentId={paymentId} />
-          </Elements>
-        )}
-      </Col>
-    </>
+    <Col className="mt-4">
+      {clientSecret && (
+        <Elements options={options} stripe={stripePromise}>
+          <CheckoutForm paymentId={paymentId} />
+        </Elements>
+      )}
+    </Col>
   );
 }
 
