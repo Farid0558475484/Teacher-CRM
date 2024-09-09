@@ -40,20 +40,20 @@ function Login() {
 
       const { message, token, user } = response.data;
 
-      console.log("Received token:", token);
-      console.log("Login success:", true);
-      console.log("User:", user);
-      console.log("@User Role:", user.role);
+      // console.log("Received token:", token);
+      // console.log("Login success:", true);
+      // console.log("User:", user);
+      // console.log("@User Role:", user.role);
 
       localStorage.setItem("token", token);
       localStorage.setItem("userId", user.id);
       localStorage.setItem("success", true);
       localStorage.setItem("role", user.role);
-
+      
       dispatch(setAuth({ success: true, message, token, user }));
-
+      
       const userId = localStorage.getItem("userId");
-      console.log("userId:", userId);
+      // console.log("userId:", userId);
 
       if (selectedType === "tutor" || selectedType === "student") {
         navigate(`/`);
@@ -70,12 +70,12 @@ function Login() {
       setIsLoading(false);
     }
 
-    console.log("handleLogin end");
+    // console.log("handleLogin end");
   };
 
   const handleLogin = (event) => {
     event.preventDefault();
-    console.log("handleLogin");
+    // console.log("handleLogin");
     login();
   };
 

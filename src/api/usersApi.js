@@ -1,13 +1,11 @@
 import { baseQuery } from "./api";
-const token = localStorage.getItem("token");
-
 export const usersApi = baseQuery.injectEndpoints({
   tagTypes: ["User"],
   endpoints: (builder) => ({
     userId: builder.query({
       query: (userId) => `/api/users/${userId}`,
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       providesTags: ["User"],
     }),
@@ -23,7 +21,7 @@ export const usersApi = baseQuery.injectEndpoints({
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         providesTags: ["User"],
       }),

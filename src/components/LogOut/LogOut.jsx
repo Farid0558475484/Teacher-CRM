@@ -1,21 +1,17 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 import { logout } from "./../../redux/features/auth/authSlice";
 
 function LogoutButton() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
+    localStorage.clear();
     dispatch(logout());
-
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("success");
-    localStorage.removeItem("role");
-
-    navigate("/login");
-  };
+    navigate("/");;
+  }, [dispatch, navigate]);
 
   return (
     <div style={{ textAlign: "center" }}>

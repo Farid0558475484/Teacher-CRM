@@ -1,5 +1,4 @@
 import { baseQuery } from "./api";
-const token = localStorage.getItem("token");
 
 export const coursesApi = baseQuery.injectEndpoints({
   tagTypes: ["Courses"],
@@ -8,7 +7,7 @@ export const coursesApi = baseQuery.injectEndpoints({
       query: () => ({
         url: "/api/courses/instructor/all-courses",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         providesTags: ["Courses"],
       }),
@@ -19,7 +18,7 @@ export const coursesApi = baseQuery.injectEndpoints({
         url: "/api/courses/create-course",
         method: "POST",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         invalidatesTags: ["Courses"],
       }),
@@ -35,7 +34,7 @@ export const coursesApi = baseQuery.injectEndpoints({
       query: () => ({
         url: `/api/students/lessons`,
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         providesTags: ["Courses"],
       }),
@@ -54,7 +53,7 @@ export const coursesApi = baseQuery.injectEndpoints({
         url: `/api/courses/lesson/${courseId}`,
         method: "POST",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "application/json",
         },
         body: lessonData,
@@ -66,7 +65,7 @@ export const coursesApi = baseQuery.injectEndpoints({
         url: `/api/courses/lesson/${courseId}/${lessonId}`,
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }),
       invalidatesTags: ["Courses"],

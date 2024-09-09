@@ -24,6 +24,7 @@ function StripeForm({ inputValue }) {
             },
             body: JSON.stringify({
               studentId: "658fa367742cd725b24b184a",
+              // studentId: "66dabfb8495a64dbe75b9c17",
               amount: inputValue,
               payment_method: "pm_card_visa",
             }),

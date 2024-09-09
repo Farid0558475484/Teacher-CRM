@@ -1,5 +1,4 @@
 import { baseQuery } from "./api";
-const token = localStorage.getItem("token");
 
 export const tutorApi = baseQuery.injectEndpoints({
   tagTypes: ["User"],
@@ -12,7 +11,7 @@ export const tutorApi = baseQuery.injectEndpoints({
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: id,
         invalidatesTags: ["User"],
