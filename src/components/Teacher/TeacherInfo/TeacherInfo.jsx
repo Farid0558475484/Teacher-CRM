@@ -4,8 +4,15 @@ import { Col } from "react-bootstrap";
 import s from "./TeacherInfo.module.scss";
 
 const TeacherInfo = memo(() => {
-  const { data } = useCurrentUserQuery();
-  console.log("userData-data", data?.userProfile);
+  const { data, isLoading } = useCurrentUserQuery();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!data?.userProfile) {
+    return <div>No user data available</div>;
+  }
 
   const teacherRating = [
     { label: "Rating", value: "x x x x x" },
@@ -13,25 +20,27 @@ const TeacherInfo = memo(() => {
     { label: "Students", value: "363" },
   ];
 
+  console.log("data", data);
+
   return (
     <section>
       <div className={s.info}>
         <Col md={2}>
           <div className={s.teacherPhoto}>
-            {<img src={data?.userProfile?.avatarImageUrl} alt="teacherPhoto" />}
+            <img src={data.userProfile.avatarImageUrl} alt="teacherPhoto" />
           </div>
           <div className={s.visitedInfo}>
-            <p>{"Visited 3 minutes ago"}</p>
+            <p>Visited 3 minutes ago</p>
           </div>
         </Col>
         <Col md={8}>
           <div className={s.teacherInfo}>
-            <p>Username: {data?.userProfile?.username || "N/A"}</p>
-            <p>Name: {data?.userProfile?.name || "N/A"}</p>
-            <p>Surname: {data?.userProfile?.familyName || "N/A"}</p>
-            <p>Country: {data?.userProfile?.country || "N/A"}</p>
-            <p>Email: {data?.userProfile?.email || "N/A"}</p>
-            <p>Role: {data?.userProfile?.roles || "N/A"}</p>
+            <p>Username: {data.userProfile.username || "N/A"}</p>
+            <p>Name: {data.userProfile.name || "N/A"}</p>
+            <p>Surname: {data.userProfile.familyName || "N/A"}</p>
+            <p>Country: {data.userProfile.country || "N/A"}</p>
+            <p>Email: {data.userProfile.email || "N/A"}</p>
+            <p>Role: {data.userProfile.roles || "N/A"}</p>
           </div>
         </Col>
         <Col md={2}>
@@ -44,11 +53,13 @@ const TeacherInfo = memo(() => {
       </div>
       <div className={s.about}>
         <div className={s.aboutHeader}>
-          <h2>{"About"}</h2>
-          <p>{"Barattson teacher since Oct 8, 2023"}</p>
+          <h2>About</h2>
+          <p>Barattson teacher since Oct 8, 2023</p>
         </div>
         <div className={s.desc}>
-          {<p>{data?.userProfile?.aboutUser?.about}</p>}
+          <p>
+            {data.userProfile.aboutUser?.about || "No description available"}
+          </p>
         </div>
       </div>
     </section>

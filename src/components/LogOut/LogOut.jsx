@@ -10,7 +10,7 @@ function LogoutButton() {
   const handleLogout = useCallback(() => {
     localStorage.clear();
     dispatch(logout());
-    navigate("/");;
+    navigate("/");
   }, [dispatch, navigate]);
 
   return (
@@ -19,6 +19,11 @@ function LogoutButton() {
         style={{
           backgroundColor: "#db3580",
           borderRadius: "10px",
+          color: "white",
+          padding: "6px 12px",
+          border: "none",
+          cursor: "pointer",
+          fontSize: "16px",
         }}
         onClick={handleLogout}
       >
