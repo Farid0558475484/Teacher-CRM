@@ -7,7 +7,6 @@ import StripeForm from "./StripeForm";
 function StudentWallet() {
   const [inputValue, setInputValue] = useState("");
   const [showStripeForm, setShowStripeForm] = useState(false);
-  const [paymentSubmitted, setPaymentSubmitted] = useState(false);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -19,14 +18,7 @@ function StudentWallet() {
     } else {
       console.log("Please enter a valid amount before buying.");
     }
-
-    if (!paymentSubmitted) {
-      setPaymentSubmitted(true);
-      setShowStripeForm(true);
-    }
   };
-
-  console.log("inputValue", inputValue);
 
   return (
     <>

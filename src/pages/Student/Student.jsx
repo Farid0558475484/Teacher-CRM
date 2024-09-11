@@ -6,10 +6,10 @@ const StudentHome = lazy(() =>
   import("./../../components/Student/StudentHome/StudentHome")
 );
 const StudentWallet = lazy(() =>
-  import("./../../components/Student/StudentWallet/StudentWallet")
+  import("./../../components/Student/Stripe/StudentWallet")
 );
-const PaymentStatus = lazy(() =>
-  import("./../../components/Student/StudentWallet/PaymentStatus")
+const PaymentComplete = lazy(() =>
+  import("../../components/Student/Stripe/PaymentComplete")
 );
 
 function Student() {
@@ -22,7 +22,7 @@ function Student() {
         <Routes>
           <Route path="/:userId/*" element={<StudentHome />} />
           <Route path="/student-wallet" element={<StudentWallet />} />
-          <Route path="/payment-status" element={<PaymentStatus />} />
+          <Route path="/payment-status" element={<PaymentComplete />} />
         </Routes>
       </main>
     </>

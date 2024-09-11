@@ -49,6 +49,11 @@ function Login() {
       localStorage.setItem("userId", user.id);
       localStorage.setItem("success", true);
       localStorage.setItem("role", user.role);
+
+      localStorage.setItem("studentId", user.studentId);
+      console.log("studentId:", user.studentId);
+
+
       
       dispatch(setAuth({ success: true, message, token, user }));
       

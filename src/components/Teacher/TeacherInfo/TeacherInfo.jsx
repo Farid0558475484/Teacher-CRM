@@ -20,7 +20,7 @@ const TeacherInfo = memo(() => {
     { label: "Students", value: "363" },
   ];
 
-  console.log("data", data);
+  // console.log("data", data);
 
   return (
     <section>
