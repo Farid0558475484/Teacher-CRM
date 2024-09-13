@@ -129,9 +129,8 @@ const PaymentComplete = () => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ id }),
+        body: JSON.stringify({ paymentId: id }),
       })
-      
         .then((response) => {
           if (!response.ok) {
             return response.json().then((errorData) => {
@@ -150,8 +149,6 @@ const PaymentComplete = () => {
         .catch((error) => {
           console.error("Error confirming payment intent:", error);
         });
-
-        
     }
   }, [location.search, paymentId]);
 
