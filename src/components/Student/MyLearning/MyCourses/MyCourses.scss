@@ -1,0 +1,65 @@
+.MyCourses {
+  .filters {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+
+  .filters button,
+  .filters input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  .course-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .course-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+    text-align: center;
+  }
+
+  .course-card img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .course-card h3 {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+
+  .course-card p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  .course-list {
+    .courseName {
+      text-align: left;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .tutorName {
+      text-align: left;
+      font-size: 16px;
+      font-weight: 400;
+    }
+    .startName {
+      text-align: left;
+      font-size: 16px;
+      font-weight: 400;
+    }
+    .rating {
+      text-align: right;
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+}

@@ -53,53 +53,59 @@ function StudentLesson() {
 
   return (
     <section>
-      <div className={s.lessons}>
-        <div className={s.allLessons}>
-          <h2> All -Lessons</h2>
-          <div className={s.lessonsList}>
-            salam
-            {data?.lessons.map((lesson) => (
-              <Col md={8} key={lesson._id}>
-                <p>{lesson?.title}</p>
-                <p>{lesson?.date}</p>
-                <p>{lesson?.duration}</p>
-                <p>{lesson?.status}</p>
-                <p>{lesson?.videoLink}</p>
-              </Col>
-            ))}
-          </div>
-        </div>
-        <div className={s.upcomingLessons}>
-          <h2> Upcoming -Lessons</h2>
-          <p className={s.lessonTitle}>Upcoming lesson</p>
-          <div className={s.lessonsList}>
-            <Col md={8}>
-              <p>16 September</p>
-              <p>17:00</p>
-              <p>English</p>
-            </Col>
-            <Col md={4}>
-              <div className={s.cad}>
-                <button onClick={handleAttendLesson}>Enter Classroom</button>
+      <div className="container">
+        <div className="row">
+          <div className={s.lessons}>
+            <div className={s.allLessons}>
+              <h2> All -Lessons</h2>
+              <div className={s.lessonsList}>
+                salam
+                {data?.lessons.map((lesson) => (
+                  <Col md={8} key={lesson._id}>
+                    <p>{lesson?.title}</p>
+                    <p>{lesson?.date}</p>
+                    <p>{lesson?.duration}</p>
+                    <p>{lesson?.status}</p>
+                    <p>{lesson?.videoLink}</p>
+                  </Col>
+                ))}
               </div>
-            </Col>
+            </div>
+            <div className={s.upcomingLessons}>
+              <h2> Upcoming -Lessons</h2>
+              <p className={s.lessonTitle}>Upcoming lesson</p>
+              <div className={s.lessonsList}>
+                <Col md={8}>
+                  <p>16 September</p>
+                  <p>17:00</p>
+                  <p>English</p>
+                </Col>
+                <Col md={4}>
+                  <div className={s.cad}>
+                    <button onClick={handleAttendLesson}>
+                      Enter Classroom
+                    </button>
+                  </div>
+                </Col>
+              </div>
+            </div>
           </div>
+          <Modal show={showModal} onHide={handleCloseModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>Start Lesson</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Are you ready to start the lesson?</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleCloseModal}>
+                Cancel
+              </Button>
+              <Button variant="primary" onClick={handleStartLesson}>
+                Start Lesson
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </div>
       </div>
-      <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Start Lesson</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Are you ready to start the lesson?</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={handleStartLesson}>
-            Start Lesson
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </section>
   );
 }
