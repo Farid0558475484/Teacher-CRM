@@ -1,8 +1,14 @@
-import React, { memo, Suspense } from "react";
+import React, { memo, Suspense, lazy } from "react";
 import { NavLink, Routes, Route } from "react-router-dom";
-import MyCourses from "./MyCourses/MyCourses";
-import MyLessons from "./MyLessons/MyLessons";
+import Loading from "../../../components/Loading/Loading";
 import "./MyLearning.scss";
+
+const MyCourses = lazy(() =>
+  import("./../../../components/Student/MyLearning//MyCourses/MyCourses")
+);
+const MyLessons = lazy(() =>
+  import("./../../../components/Student/MyLearning/MyLessons/MyLessons")
+);
 
 const NavigationMenu = memo(() => (
   <nav>
@@ -32,7 +38,7 @@ const MyLearning = () => {
         </div>
       </div>
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<MyCourses />} />
           <Route path="my-courses" element={<MyCourses />} />
