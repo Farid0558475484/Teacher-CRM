@@ -20,7 +20,7 @@ function Student() {
         style={{ backgroundImage: "linear-gradient(270deg, #a8518a, #ec2a7b)" }}
       >
         <Routes>
-          <Route path="/:userId/*" element={<StudentHome />} />
+          <Route path="/*" element={<StudentHome />} />
           <Route path="/student-wallet" element={<StudentWallet />} />
           <Route path="/payment-status" element={<PaymentComplete />} />
         </Routes>

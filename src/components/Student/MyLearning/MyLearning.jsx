@@ -1,13 +1,18 @@
-import React, { memo } from "react";
-import { NavLink } from "react-router-dom";
+import React, { memo, Suspense } from "react";
+import { NavLink, Routes, Route } from "react-router-dom";
 import MyCourses from "./MyCourses/MyCourses";
+import MyLessons from "./MyLessons/MyLessons";
 import "./MyLearning.scss";
 
 const NavigationMenu = memo(() => (
   <nav>
     <ul>
-      <li><NavLink to="/student/my-course">My courses</NavLink></li>
-      <li>My lessons</li>
+      <li>
+        <NavLink to="my-courses">My courses</NavLink>
+      </li>
+      <li>
+        <NavLink to="my-lessons">My lessons</NavLink>
+      </li>
       <li>Wishlist</li>
       <li>Archived</li>
       <li>Learning tools</li>
@@ -27,7 +32,13 @@ const MyLearning = () => {
         </div>
       </div>
 
-      <MyCourses />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<MyCourses />} />
+          <Route path="my-courses" element={<MyCourses />} />
+          <Route path="my-lessons" element={<MyLessons />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 };
