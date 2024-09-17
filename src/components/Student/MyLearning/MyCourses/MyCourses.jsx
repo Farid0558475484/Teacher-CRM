@@ -21,13 +21,13 @@ const CourseCard = memo(({ course }) => {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  const handleCourseClick = () => {
-    console.log("course clicked");
-    navigate(`/student/my-courses/lessons`);
+  const handleCourseClick = (course) => {
+    navigate(`${course._id}/lessons`); 
   };
+  
 
   return (
-    <div className="course-card" onClick={() => handleCourseClick()}>
+    <div className="course-card" onClick={() => handleCourseClick(course)}>
       <img
         src={
           course.img ||
