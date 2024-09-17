@@ -9,6 +9,11 @@ const MyCourses = lazy(() =>
 const MyLessons = lazy(() =>
   import("./../../../components/Student/MyLearning/MyLessons/MyLessons")
 );
+const CourseDetails = lazy(() =>
+  import(
+    "./../../../components/Student/MyLearning/MyCourses/CourseDetails/CourseDetails"
+  )
+);
 
 const NavigationMenu = memo(() => (
   <nav>
@@ -43,6 +48,7 @@ const MyLearning = () => {
           <Route path="/" element={<MyCourses />} />
           <Route path="my-courses" element={<MyCourses />} />
           <Route path="my-lessons" element={<MyLessons />} />
+          <Route path="/my-courses/lessons" element={<CourseDetails />} />
         </Routes>
       </Suspense>
     </div>

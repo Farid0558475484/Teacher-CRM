@@ -26,7 +26,7 @@ const Headers = memo(() => {
                     {role === "student" ? (
                       <>
                         <li className={s.studentProfile}>
-                          <NavLink to={`/student`}>
+                          <NavLink to={`/student/my-courses`}>
                             <FontAwesomeIcon icon={faGraduationCap} />
                           </NavLink>
                         </li>

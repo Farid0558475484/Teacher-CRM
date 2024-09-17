@@ -1,6 +1,7 @@
 import React, { memo, useState } from "react";
 import { useStudentAllCoursesQuery } from "./../../../../api/coursesApi";
 import { FaTrashAlt, FaHeart, FaEllipsisV } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import "./MyCourses.scss";
 
 const Filters = memo(() => (
@@ -16,13 +17,22 @@ const Filters = memo(() => (
 
 const CourseCard = memo(({ course }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
+  const handleCourseClick = () => {
+    console.log("course clicked");
+    navigate(`/student/my-courses/lessons`);
+  };
+
   return (
-    <div className="course-card">
+    <div className="course-card" onClick={() => handleCourseClick()}>
       <img
-        src={course.img || "https://img-c.udemycdn.com/course/480x270/4883600_1ee4.jpg"}
+        src={
+          course.img ||
+          "https://img-c.udemycdn.com/course/480x270/4883600_1ee4.jpg"
+        }
         alt={course.title}
       />
       <div className="course-info">
@@ -32,11 +42,12 @@ const CourseCard = memo(({ course }) => {
           Start time: {new Date(course.startTime).toLocaleDateString()}
         </p>
         <p className="rating">
-          {"★".repeat(Math.floor(course.rating || 5)) + "☆".repeat(5 - Math.floor(course.rating))}
+          {"★".repeat(Math.floor(course.rating || 5)) +
+            "☆".repeat(5 - Math.floor(course.rating))}
         </p>
       </div>
 
-      <div className="menu">
+      <div className="menu" onClick={(e) => e.stopPropagation()}>
         <button className="menu-btn" onClick={toggleMenu}>
           <FaEllipsisV />
         </button>
@@ -44,7 +55,7 @@ const CourseCard = memo(({ course }) => {
           <div className="menu-dropdown">
             <div className="menu-item">
               <FaTrashAlt className="icon" />
-              <span>Delete course</span>
+              <span>Delete </span>
             </div>
             <div className="menu-item">
               <FaHeart className="icon" />
