@@ -74,6 +74,13 @@ export const coursesApi = baseQuery.injectEndpoints({
       }),
       invalidatesTags: ["Courses"],
     }),
+    allLessonsOfCourse: builder.query({
+      query: (courseId) => `/api/courses/lesson/all-lessons/${courseId}`,
+      headers: {
+        Accept: "application/json",
+      },
+      providesTags: ["Courses"],
+    }),
   }),
   overrideExisting: false,
 });
@@ -87,4 +94,5 @@ export const {
   useCourseDetailsQuery,
   useAddLessonMutation,
   useDeleteLessonMutation,
+  useAllLessonsOfCourseQuery,
 } = coursesApi;

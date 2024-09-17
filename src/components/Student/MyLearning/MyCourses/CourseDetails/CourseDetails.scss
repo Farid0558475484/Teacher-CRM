@@ -1,0 +1,112 @@
+.course-details {
+  padding: 20px;
+  color: #333;
+  min-height: 100vh;
+
+  .container {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .course-header {
+    background: linear-gradient(270deg, rgb(168, 81, 138), rgb(236, 42, 123));
+    color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .course-description {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .course-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1rem;
+
+      span {
+        display: inline-block;
+        padding: 8px 15px;
+        background-color: #fff;
+        color: #333;
+        border-radius: 5px;
+        margin: 0 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  .lessons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 25px;
+  }
+
+  .lesson-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      color: #4a4a4a;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1rem;
+      margin: 8px 0;
+      color: #666;
+    }
+
+    .view-details-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 18px;
+      background: linear-gradient(270deg, rgb(168, 81, 138), rgb(236, 42, 123));
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+
+      &.disabled {
+        background: #ccc;
+        pointer-events: none;
+      }
+
+      &:hover:not(.disabled) {
+        background: linear-gradient(
+          270deg,
+          rgb(168, 81, 138),
+          rgb(236, 42, 123)
+        );
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .course-details .course-header .course-meta span {
+    padding: 6px 4px;
+    font-size: 0.9rem;
+    margin: 0px;
+  }
+}
