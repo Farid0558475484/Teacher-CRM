@@ -2,27 +2,43 @@ import React, { useMemo, useCallback } from "react";
 import { useAllLessonsOfCourseQuery } from "./../../../../../api/coursesApi";
 import { useParams } from "react-router-dom";
 import "./CourseDetails.scss";
-
 const LessonCard = ({ lesson }) => {
-  const { title, date, duration, status, videoLink } = lesson;
+  const { title, date, duration, status, videoLink, _id, slug } = lesson;
 
   const formattedDate = useMemo(
     () => new Date(date).toLocaleDateString(),
     [date]
   );
 
+
   return (
-    <div className="lesson-card">
-      <h3>{title}</h3>
-      <p>Start date: {formattedDate}</p>
-      <p>Duration: {duration} hours</p>
-      <p>Status: {status || "N/A"}</p>
-      <a
-        href={videoLink}
-        className={`view-details-btn ${videoLink ? "" : "disabled"}`}
-      >
-        {videoLink ? "Start Lesson" : "Disabled"}
-      </a>
+    <div className="row">
+      <div className={`lesson-card  d-flex mt-4`}>
+        <div className="col-md-4">
+          <div className="name">{title}</div>
+          <div className="lessonId">Id: {_id}</div>
+        </div>
+        <div className="col-md-4">
+          <div className="lessonName">{slug}</div>
+          <div className="duration">Duration: {duration} hours</div>
+        </div>
+        <div className="col-md-4">
+          <div className="status">Status: {status || "N/A"}</div>
+          <div className="date">
+            <h3>Start date: {formattedDate}</h3>
+          </div>
+          {videoLink && (
+            <a
+              href={videoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="videoLinkBtn mt-2"
+            >
+              Start lesson
+            </a>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
@@ -30,6 +46,7 @@ const LessonCard = ({ lesson }) => {
 function CourseDetails() {
   const { courseId } = useParams();
   const { data, isLoading } = useAllLessonsOfCourseQuery(courseId);
+  console.log(data);
 
   const renderLessons = useCallback(() => {
     return data?.lessons.map((lesson) => (

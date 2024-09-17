@@ -21,7 +21,7 @@ export default function CheckoutForm({ dpmCheckerLink }) {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "http://localhost:5174/student/payment-status",
+        return_url: "http://localhost:5173/student/payment-status",
       },
     });
 

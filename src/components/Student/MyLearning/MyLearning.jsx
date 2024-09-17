@@ -48,9 +48,7 @@ const MyLearning = () => {
           <Route path="/" element={<MyCourses />} />
           <Route path="my-courses" element={<MyCourses />} />
           <Route path="my-lessons" element={<MyLessons />} />
-          {/* <Route path="/my-courses/lessons" element={<CourseDetails />} /> */}
           <Route path="my-courses/:courseId/lessons" element={<CourseDetails />} />
-
         </Routes>
       </Suspense>
     </div>

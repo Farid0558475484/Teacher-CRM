@@ -2,6 +2,19 @@
   padding: 20px;
   color: #333;
   min-height: 100vh;
+  .videoLinkBtn {
+    background: linear-gradient(270deg, rgb(168, 81, 138), rgb(236, 42, 123));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    margin-top: 20px;
+    &:hover {
+      background: linear-gradient(270deg, rgb(168, 81, 138), rgb(236, 42, 123));
+    }
+  }
 
   .container {
     background-color: #f9f9f9;
@@ -44,12 +57,6 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
     }
-  }
-
-  .lessons-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 25px;
   }
 
   .lesson-card {
