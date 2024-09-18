@@ -9,6 +9,7 @@ function CourseDetail() {
   const { data: courseDetails } = useCourseDetailsQuery(courseId);
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  // console.log("courseDetails", courseDetails);
 
   const handleCheckboxChange = (course) => {
     if (selectedCourses.includes(course)) {
