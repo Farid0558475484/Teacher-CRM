@@ -2,6 +2,7 @@ import React, { memo, useState } from "react";
 import { useStudentAllCoursesQuery } from "./../../../../api/coursesApi";
 import { FaTrashAlt, FaHeart, FaEllipsisV } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../../Loading/Loading";
 import "./MyCourses.scss";
 
 const Filters = memo(() => (
@@ -72,7 +73,7 @@ const MyCourses = () => {
   const { data, isLoading } = useStudentAllCoursesQuery();
 
   if (isLoading) {
-    return <div>Loading courses...</div>;
+    return <Loading />;
   }
 
   return (

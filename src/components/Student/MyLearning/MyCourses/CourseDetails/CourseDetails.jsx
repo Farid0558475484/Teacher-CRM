@@ -1,6 +1,7 @@
 import React, { useMemo, useCallback } from "react";
 import { useAllLessonsOfCourseQuery } from "./../../../../../api/coursesApi";
 import { useParams } from "react-router-dom";
+import Loading from "../../../../Loading/Loading";
 import "./CourseDetails.scss";
 const LessonCard = ({ lesson }) => {
   const { title, date, duration, status, videoLink, _id, slug } = lesson;
@@ -46,8 +47,6 @@ const LessonCard = ({ lesson }) => {
 function CourseDetails() {
   const { courseId } = useParams();
   const { data, isLoading } = useAllLessonsOfCourseQuery(courseId);
-  console.log(data);
-
   const renderLessons = useCallback(() => {
     return data?.lessons.map((lesson) => (
       <LessonCard key={lesson._id} lesson={lesson} />
@@ -55,7 +54,7 @@ function CourseDetails() {
   }, [data?.lessons]);
 
   if (isLoading || !data) {
-    return <div>Loading lessons...</div>;
+    return <Loading />;
   }
 
   const { courseDetails } = data;

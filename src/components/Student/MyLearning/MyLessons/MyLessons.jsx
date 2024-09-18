@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import { useStudentAllLessonsQuery } from "./../../../../api/coursesApi";
+import Loading from "../../../Loading/Loading";
 import "./MyLessons.scss";
 
 const Filters = memo(() => (
@@ -41,7 +42,7 @@ const MyLessons = () => {
   const { data, isLoading } = useStudentAllLessonsQuery();
 
   if (isLoading) {
-    return <div>Loading lesson...</div>;
+    return <Loading />;
   }
 
   return (

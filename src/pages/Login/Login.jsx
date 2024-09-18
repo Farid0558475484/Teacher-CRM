@@ -37,28 +37,14 @@ function Login() {
       } else if (selectedType === "tutor") {
         response = await loginTeacher({ email, password });
       }
-
       const { message, token, user } = response.data;
-
-      // console.log("Received token:", token);
-      // console.log("Login success:", true);
-      // console.log("User:", user);
-      // console.log("@User Role:", user.role);
-
       localStorage.setItem("token", token);
       localStorage.setItem("userId", user.id);
       localStorage.setItem("success", true);
       localStorage.setItem("role", user.role);
-
       localStorage.setItem("studentId", user.studentId);
-      console.log("studentId:", user.studentId);
-
-
       
       dispatch(setAuth({ success: true, message, token, user }));
-      
-      const userId = localStorage.getItem("userId");
-      // console.log("userId:", userId);
 
       if (selectedType === "tutor" || selectedType === "student") {
         navigate(`/`);
@@ -74,13 +60,10 @@ function Login() {
     } finally {
       setIsLoading(false);
     }
-
-    // console.log("handleLogin end");
   };
 
   const handleLogin = (event) => {
     event.preventDefault();
-    // console.log("handleLogin");
     login();
   };
 
