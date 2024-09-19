@@ -14,6 +14,9 @@ const CourseDetails = lazy(() =>
     "./../../../components/Student/MyLearning/MyCourses/CourseDetails/CourseDetails"
   )
 );
+const Archived = lazy(() =>
+  import("./../../../components/Student/MyLearning/Archived/Archived")
+);
 
 const NavigationMenu = memo(() => (
   <nav>
@@ -24,8 +27,10 @@ const NavigationMenu = memo(() => (
       <li>
         <NavLink to="my-lessons">My lessons</NavLink>
       </li>
+      <li>
+        <NavLink to="archived">Archived</NavLink>
+      </li>
       <li>Wishlist</li>
-      <li>Archived</li>
       <li>Learning tools</li>
     </ul>
   </nav>
@@ -46,9 +51,13 @@ const MyLearning = () => {
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<MyCourses />} />
+          <Route path="archived" element={<Archived />} />
           <Route path="my-courses" element={<MyCourses />} />
           <Route path="my-lessons" element={<MyLessons />} />
-          <Route path="my-courses/:courseId/lessons" element={<CourseDetails />} />
+          <Route
+            path="my-courses/:courseId/lessons"
+            element={<CourseDetails />}
+          />
         </Routes>
       </Suspense>
     </div>
