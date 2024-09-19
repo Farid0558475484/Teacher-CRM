@@ -1,29 +1,15 @@
 import { memo } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import { useInstructorAllCoursesQuery, useDeleteLessonMutation } from "./../../../../api/coursesApi";
-import "react-loading-skeleton/dist/skeleton.css";
+import { useInstructorAllCoursesQuery } from "./../../../../api/coursesApi";
 import s from "./LessonList.module.scss";
 
-const LessonList = memo(({ AddLessons, AddCourses }) => {
+const LessonList = memo(({ AddLessons, AddCourses, DeleteLesson,StartLesson }) => {
   const { data, isLoading, refetch } = useInstructorAllCoursesQuery();
-  const [deleteLesson] = useDeleteLessonMutation();
-
-  const handleDelete = async (courseId, lessonId) => {
-    const confirmed = window.confirm("Are you sure you want to delete this lesson?");
-    if (confirmed) {
-      try {
-        await deleteLesson({ courseId, lessonId }).unwrap();
-        refetch(); // Перезапрашиваем данные после удаления
-      } catch (error) {
-        alert("Failed to delete the lesson. Please try again.");
-      }
-    }
-  };
 
   return (
     <section className={s.lessonSection}>
-      <Container>
-        <Row>
+      <div className="container">
+        <div className="row">
           <div className={s.lessons}>
             <h2 className={s.title}>
               <div className={s.lessonHeader}>
@@ -39,11 +25,17 @@ const LessonList = memo(({ AddLessons, AddCourses }) => {
                       <div className={s.leftContent}>
                         <Card.Title>Category: {course?.category}</Card.Title>
                         <Card.Text>Course Name: {course?.title}</Card.Text>
-                        <Card.Text>Course Desc: {course?.description}</Card.Text>
+                        <Card.Text>
+                          Course Desc: {course?.description}
+                        </Card.Text>
                       </div>
                       <div className={s.rightContent}>
-                        <Card.Text className={s.time}>Duration: {course?.duration} min</Card.Text>
-                        <Card.Text className={s.price}>USD {course?.creditsSpent}</Card.Text>
+                        <Card.Text className={s.time}>
+                          Duration: {course?.duration} min
+                        </Card.Text>
+                        <Card.Text className={s.price}>
+                          USD {course?.creditsSpent}
+                        </Card.Text>
                       </div>
                     </Card.Body>
                     <Card.Body>
@@ -52,14 +44,17 @@ const LessonList = memo(({ AddLessons, AddCourses }) => {
                           <Card.Body className={s.cardBody} key={lessonIndex}>
                             <Card.Title>Lesson: {lesson?.title}</Card.Title>
                             <Card.Text>Slug: {lesson?.slug}</Card.Text>
-                            <Card.Text>CreditsSpent: {lesson?.creditsSpent}</Card.Text>
+                            <Card.Text>
+                              CreditsSpent: {lesson?.creditsSpent}
+                            </Card.Text>
                             <Card.Text>Duration: {lesson?.duration}</Card.Text>
-                            <button
-                              className="btn btn-danger"
-                              onClick={() => handleDelete(course._id, lesson._id)}
-                            >
-                              Delete
-                            </button>
+                            {DeleteLesson && (
+                              <DeleteLesson
+                                courseId={course._id}
+                                lessonId={lesson._id}
+                                refetch={refetch}
+                              />
+                            )}
                           </Card.Body>
                         ))}
                         {AddLessons && <AddLessons courseId={course._id} />}
@@ -70,8 +65,8 @@ const LessonList = memo(({ AddLessons, AddCourses }) => {
               ))}
             </div>
           </div>
-        </Row>
-      </Container>
+        </div>
+      </div>
     </section>
   );
 });
