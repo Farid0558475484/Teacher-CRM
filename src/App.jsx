@@ -12,6 +12,7 @@ const NotFoundPage = lazy(() =>
 );
 const Teacher = lazy(() => import("./pages/Teacher/Teacher"));
 const Student = lazy(() => import("./pages/Student/Student"));
+const Admin = lazy(() => import("./pages/Admin/Admin"));
 const PrivateRouter = lazy(() => import("./HOC/PrivateRouter"));
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
               </PrivateRouter>
             }
           />
+          <Route path="/admin/*" element={<Admin />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
