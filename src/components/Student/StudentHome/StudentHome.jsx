@@ -1,5 +1,5 @@
 import { Container, Row } from "react-bootstrap";
-import StudentInfo from "./../StudentInfo/StudentInfo";
+import StudentInfo from "../Profile/Profile";
 import Resume from "./../../Teacher/Resume/Resume";
 import StudentLesson from "./../StudentLesson/StudentLesson";
 import MyTraining from "../MyLearning/MyLearning";

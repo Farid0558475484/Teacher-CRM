@@ -6,6 +6,11 @@ function Sidebar() {
   return (
     <div className={s.sidebar}>
       <ul className={s.sidebarUl}>
+      <li>
+          <NavLink to={`/teacher`} className={s.item}>
+            Home
+          </NavLink>
+        </li>
         <li>
           <NavLink to={`/teacher/lessons`} className={s.item}>
             My Courses

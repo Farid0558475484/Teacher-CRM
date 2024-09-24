@@ -34,7 +34,7 @@ const Headers = memo(() => {
                     ) : role === "tutor" ? (
                       <>
                         <li className={s.studentProfile}>
-                          <NavLink to={`/teacher/${userId}`}>
+                          <NavLink to={`/teacher`}>
                             <FontAwesomeIcon icon={faPersonChalkboard} />
                           </NavLink>
                         </li>

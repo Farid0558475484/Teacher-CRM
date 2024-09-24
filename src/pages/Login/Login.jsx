@@ -43,11 +43,17 @@ function Login() {
       localStorage.setItem("success", true);
       localStorage.setItem("role", user.role);
       localStorage.setItem("studentId", user.studentId);
-      
+
       dispatch(setAuth({ success: true, message, token, user }));
 
-      if (selectedType === "tutor" || selectedType === "student") {
-        navigate(`/`);
+      // if (selectedType === "tutor" || selectedType === "student") {
+      //   navigate(`/`);
+      // }
+      if (selectedType === "student") {
+        navigate(`/student`);
+      }
+      if (selectedType === "tutor") {
+        navigate(`/teacher`);
       }
     } catch (error) {
       console.error("Error:", error);

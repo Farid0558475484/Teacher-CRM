@@ -24,14 +24,14 @@ const Header = memo(() => {
       <section className={s.teacherHeader}>
         <Container>
           <Row className={s.row}>
-            <Col md={4}>
+            {/* <Col md={4}>
               <div className={s.logo}>
                 <NavLink to={`/teacher/${userId}}`}>
                   <img src={logo} alt="logo" />
                 </NavLink>
               </div>
-            </Col>
-            <Col md={8}>
+            </Col> */}
+            <Col md={12}>
               <div>
                 <nav>
                   <ul className={s.ul}>
@@ -40,7 +40,7 @@ const Header = memo(() => {
                         Home
                       </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                       <NavLink
                         to={`/teacher/teacher-settings`}
                         className={s.item}
@@ -57,7 +57,7 @@ const Header = memo(() => {
                       <NavLink to={`/teacher/messages`} className={s.item}>
                         Messages
                       </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                       <div
                         className={s.profileSettings}

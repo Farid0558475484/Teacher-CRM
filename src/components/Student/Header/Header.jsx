@@ -29,7 +29,7 @@ function Header() {
                         Home
                       </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                       <NavLink to={`/student/${userId}}`} className={s.item}>
                         Student Settings
                       </NavLink>
@@ -46,7 +46,7 @@ function Header() {
                       >
                         Wallet
                       </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                       <div
                         className={s.profileSettings}

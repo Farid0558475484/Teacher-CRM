@@ -11,18 +11,22 @@ const StudentWallet = lazy(() =>
 const PaymentComplete = lazy(() =>
   import("../../components/Student/Stripe/PaymentComplete")
 );
+const Profile = lazy(() =>
+  import("./../../components/Student/Profile/Profile.jsx")
+);
 
 function Student() {
   return (
     <>
       <Header />
       <main
-        style={{ backgroundImage: "linear-gradient(270deg, #a8518a, #ec2a7b)" }}
+        style={{ backgroundImage: "linear-gradient(270deg, #a8518a, #ec2a7b)", minHeight: "100vh" }}
       >
         <Routes>
           <Route path="/*" element={<StudentHome />} />
           <Route path="/student-wallet" element={<StudentWallet />} />
           <Route path="/payment-status" element={<PaymentComplete />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </main>
     </>
