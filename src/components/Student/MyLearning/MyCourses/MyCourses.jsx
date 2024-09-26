@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState, useEffect } from "react";
 import { useStudentAllCoursesQuery, useAddArchiveCourseMutation } from "./../../../../api/coursesApi";
 import { FaTrashAlt, FaHeart, FaEllipsisV } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -80,9 +80,9 @@ const CourseCard = memo(({ course, onArchive, openMenuId, setOpenMenuId }) => {
 const MyCourses = () => {
   const { data, isLoading } = useStudentAllCoursesQuery();
   const [courses, setCourses] = useState([]);
-  const [openMenuId, setOpenMenuId] = useState(null); // Состояние для хранения ID открытого меню
+  const [openMenuId, setOpenMenuId] = useState(null); 
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (data) {
       setCourses(data.courses);
     }

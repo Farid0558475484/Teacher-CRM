@@ -101,6 +101,17 @@ export const coursesApi = baseQuery.injectEndpoints({
         providesTags: ["Courses"],
       }),
     }),
+    unArchiveCourse: builder.mutation({
+      query: (courseId) => ({
+        url: `/api/students/unarchive-course`,
+        method: "POST",
+        body: { courseId },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        invalidatesTags: ["Courses"],
+      }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -117,4 +128,5 @@ export const {
   useAllLessonsOfCourseQuery,
   useAddArchiveCourseMutation,
   useArchiveCoursesQuery,
+  useUnArchiveCourseMutation,
 } = coursesApi;
