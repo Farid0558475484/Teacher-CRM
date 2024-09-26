@@ -1,5 +1,5 @@
 import React, { memo, useState } from "react";
-import { useStudentAllCoursesQuery } from "./../../../../api/coursesApi";
+import { useStudentAllCoursesQuery, useAddArchiveCourseMutation } from "./../../../../api/coursesApi";
 import { FaTrashAlt, FaHeart, FaEllipsisV } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../../Loading/Loading";
@@ -16,16 +16,24 @@ const Filters = memo(() => (
   </div>
 ));
 
-const CourseCard = memo(({ course }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
+const CourseCard = memo(({ course, onArchive, openMenuId, setOpenMenuId }) => {
+
+  const [archiveCourse] = useAddArchiveCourseMutation();
   const navigate = useNavigate();
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const toggleMenu = (e) => {
+    e.stopPropagation();
+    setOpenMenuId(openMenuId === course._id ? null : course._id);
+  };
 
   const handleCourseClick = (course) => {
     navigate(`${course._id}/lessons`); 
   };
-  
+
+  const handleArchive = async (courseId) => {
+    onArchive(courseId);
+    await archiveCourse(courseId).unwrap();
+  };
 
   return (
     <div className="course-card" onClick={() => handleCourseClick(course)}>
@@ -52,11 +60,11 @@ const CourseCard = memo(({ course }) => {
         <button className="menu-btn" onClick={toggleMenu}>
           <FaEllipsisV />
         </button>
-        {menuOpen && (
+        {openMenuId === course._id && (
           <div className="menu-dropdown">
             <div className="menu-item">
               <FaTrashAlt className="icon" />
-              <span>Delete </span>
+              <span onClick={() => handleArchive(course._id)}>Archived</span>
             </div>
             <div className="menu-item">
               <FaHeart className="icon" />
@@ -71,10 +79,22 @@ const CourseCard = memo(({ course }) => {
 
 const MyCourses = () => {
   const { data, isLoading } = useStudentAllCoursesQuery();
+  const [courses, setCourses] = useState([]);
+  const [openMenuId, setOpenMenuId] = useState(null); // Состояние для хранения ID открытого меню
+
+  React.useEffect(() => {
+    if (data) {
+      setCourses(data.courses);
+    }
+  }, [data]);
 
   if (isLoading) {
     return <Loading />;
   }
+
+  const handleArchive = (courseId) => {
+    setCourses(prevCourses => prevCourses.filter(course => course._id !== courseId));
+  };
 
   return (
     <section className="MyCourses">
@@ -84,8 +104,14 @@ const MyCourses = () => {
         </div>
         <div className="row">
           <div className="course-list">
-            {data?.courses.map((course, index) => (
-              <CourseCard key={index} course={course} />
+            {courses.map((course, index) => (
+              <CourseCard 
+                key={index} 
+                course={course} 
+                onArchive={handleArchive} 
+                openMenuId={openMenuId} 
+                setOpenMenuId={setOpenMenuId}
+              />
             ))}
           </div>
         </div>
