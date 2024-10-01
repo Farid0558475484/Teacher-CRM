@@ -77,7 +77,7 @@ const Courses = memo(() => {
               <img
                 alt={title}
                 className="img-fluid"
-                src={img || "https://picsum.photos/200/200"}
+                src={`data:image/webp;base64,${img}`}
               />
             </div>
             <div className="card-body">

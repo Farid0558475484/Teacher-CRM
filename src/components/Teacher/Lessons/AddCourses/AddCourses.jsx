@@ -13,8 +13,8 @@ const AddCourses = memo(() => {
     creditsSpent: 0,
   });
 
+  const [selectedFile, setSelectedFile] = useState(null); // Добавляем состояние для файла
   const token = localStorage.getItem("token");
-
   const [showModal, setShowModal] = useState(false);
 
   const handleChange = (e) => {
@@ -25,20 +25,36 @@ const AddCourses = memo(() => {
     }));
   };
 
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0]); // Обрабатываем выбранный файл
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Sending data to server:", formData);
+
+    // Используем FormData для отправки файлов
+    const data = new FormData();
+    data.append("title", formData.title);
+    data.append("description", formData.description);
+    data.append("date", formData.date);
+    data.append("duration", formData.duration);
+    data.append("category", formData.category);
+    data.append("tutor", formData.tutor);
+    data.append("creditsSpent", formData.creditsSpent);
+    if (selectedFile) {
+      data.append("img", selectedFile); // Добавляем файл к данным
+    }
+
     try {
       const response = await fetch(
         "http://localhost:8089/api/courses/create-course",
         {
           method: "POST",
           headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(formData),
+          body: data, // Передаем данные в формате FormData
         }
       );
 
@@ -53,9 +69,10 @@ const AddCourses = memo(() => {
         date: "",
         duration: 0,
         category: "",
-        tutor: "string",
+        tutor: "",
         creditsSpent: 0,
       });
+      setSelectedFile(null); // Сбрасываем выбранный файл
       handleCloseModal();
     } catch (error) {
       console.error("Error creating course:", error);
@@ -142,16 +159,6 @@ const AddCourses = memo(() => {
                     required
                   />
                 </Form.Group>
-                {/* <Form.Group controlId="tutor">
-                  <Form.Label>Tutor</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="tutor"
-                    value={formData.tutor}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group> */}
                 <Form.Group controlId="creditsSpent">
                   <Form.Label>Coast Course</Form.Label>
                   <Form.Control
@@ -160,6 +167,15 @@ const AddCourses = memo(() => {
                     value={formData.creditsSpent}
                     onChange={handleChange}
                     required
+                  />
+                </Form.Group>
+                {/* Поле для загрузки файла */}
+                <Form.Group controlId="img">
+                  <Form.Label>Upload Image</Form.Label>
+                  <Form.Control
+                    type="file"
+                    onChange={handleFileChange}
+                    accept="img/*" // Ограничиваем выбор только изображениями
                   />
                 </Form.Group>
               </Modal.Body>
