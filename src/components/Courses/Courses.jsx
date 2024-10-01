@@ -67,6 +67,8 @@ const Courses = memo(() => {
       const { _id, title, img, price, description, createdAt, updatedAt } =
         lesson;
 
+      console.log("data---", data);
+
       return (
         <div className="col-md-3 col-6 pt-3" key={_id || index}>
           <div className="card" onClick={() => handleCardClick(_id)}>
@@ -80,7 +82,11 @@ const Courses = memo(() => {
             </div>
             <div className="card-body">
               <p className="price">{price} - Azn</p>
-              <p className="description">{description}</p>
+              <p className="description">
+                {lesson?.tutor?.userId?.name +
+                  " " +
+                  lesson?.tutor?.userId?.familyName}
+              </p>
               <div className="content">
                 <div className="lessonTime">
                   <div className="card-text text-center">

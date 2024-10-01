@@ -9,40 +9,51 @@ function CourseDetail() {
   const { data: courseDetails } = useCourseDetailsQuery(courseId);
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  
+
   const { course } = courseDetails || {};
-  const { lesson = [], img, duration, category, price, title, description } = course || {};
+  const {
+    lesson = [],
+    img,
+    duration,
+    category,
+    price,
+    title,
+    description,
+    tutor,
+  } = course || {};
 
+  const handleBuyClick = useCallback(
+    async (id) => {
+      try {
+        const response = await fetch(
+          "http://localhost:8089/api/students/schedule-lesson",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({
+              lessonId: id,
+            }),
+          }
+        );
 
-  const handleBuyClick = useCallback(async (id) => {
-    try {
-      const response = await fetch(
-        "http://localhost:8089/api/students/schedule-lesson",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify({
-            lessonId: id,
-          }),
+        if (response.ok) {
+          setShowModal(true);
+          const selectedCourse = lesson.find((item) => item._id === id);
+          if (selectedCourse) {
+            setSelectedCourses([selectedCourse]);
+          }
+        } else {
+          console.error("Failed to add course to cart");
         }
-      );
-
-      if (response.ok) {
-        setShowModal(true);
-        const selectedCourse = lesson.find((item) => item._id === id);
-        if (selectedCourse) {
-          setSelectedCourses([selectedCourse]); 
-        }
-      } else {
-        console.error("Failed to add course to cart");
+      } catch (error) {
+        console.error("Error while adding course to cart: ", error);
       }
-    } catch (error) {
-      console.error("Error while adding course to cart: ", error);
-    }
-  }, [lesson]);
+    },
+    [lesson]
+  );
 
   const handleCloseModal = useCallback(() => {
     setShowModal(false);
@@ -108,7 +119,11 @@ function CourseDetail() {
             <div className={s.heroContent}>
               <div className={s.instructor}>
                 <h3>Instructor</h3>
-                <h1>{description || "No description"}</h1>
+                {/* <h1>{description || "No description"}</h1> */}
+                <h1>
+                  {/* {tutor?.userId?.name + " " + tutor?.userId?.familyName} */}
+                  {tutor?.userId?.name + " " + tutor?.userId?.familyName}
+                </h1>
               </div>
             </div>
           </div>
